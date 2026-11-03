@@ -51,10 +51,10 @@ export default function WhyChooseSection() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white font-serif-heading tracking-tight leading-tight mb-4">
             Why Discerning Homebuyers Choose Zentara Realty
           </h2>
-          <p className="text-base sm:text-lg text-gray-300 leading-relaxed font-light">
+          {/* <p className="text-base sm:text-lg text-gray-300 leading-relaxed font-light">
             Navigating the dynamic Gurgaon residential landscape requires deep corridor knowledge,
             unvarnished market intelligence, and a consultancy that places your aspirations first.
-          </p>
+          </p> */}
         </div>
 
         {/* Feature Visual Banner with Consultation Imagery */}
@@ -126,7 +126,7 @@ export default function WhyChooseSection() {
         </div>
 
         {/* Advisory Distinction Comparison Table */}
-        <div className="rounded-xl bg-[#102B50]/40 border border-white/10 p-6 md:p-8 max-w-4xl mx-auto">
+        {/* <div className="rounded-xl bg-[#102B50]/40 border border-white/10 p-6 md:p-8 max-w-4xl mx-auto">
           <div className="flex items-center gap-2 mb-4">
             <HelpCircle className="w-4 h-4 text-[#C5A46D]" />
             <h4 className="text-sm font-bold uppercase tracking-wider text-white">
@@ -167,7 +167,7 @@ export default function WhyChooseSection() {
               </tbody>
             </table>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
