@@ -5,6 +5,7 @@ import AboutSection from "@/components/AboutSection";
 import PreLaunchSection from "@/components/PreLaunchSection";
 import NewLaunchesSection from "@/components/NewLaunchesSection";
 import WhyChooseSection from "@/components/WhyChooseSection";
+import FaqSection from "@/components/FaqSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
@@ -94,6 +95,7 @@ export default function HomePage() {
         <PreLaunchSection />
         <NewLaunchesSection />
         <WhyChooseSection />
+        <FaqSection />
         <ContactSection />
       </main>
 

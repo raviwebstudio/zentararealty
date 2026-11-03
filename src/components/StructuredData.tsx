@@ -1,28 +1,77 @@
+import { FAQS } from "@/data/faqs";
+
 export default function StructuredData() {
+  const baseUrl = "https://zentararealty.property";
+
+  // 1. Primary RealEstateAgent / LocalBusiness Schema
   const realEstateAgentSchema = {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
-    "@id": "https://zentararealty.property/#realestateagent",
+    "@id": `${baseUrl}/#realestateagent`,
     "name": "Zentara Realty",
+    "alternateName": ["Zentara Realty Gurugram", "Zentara Realty Residential Consultancy"],
     "legalName": "Zentara Realty",
-    "url": "https://zentararealty.property",
-    "logo": "https://zentararealty.property/logo.svg",
-    "image": "https://zentararealty.property/og-image.svg",
+    "url": baseUrl,
+    "logo": `${baseUrl}/logo.svg`,
+    "image": `${baseUrl}/og-image.svg`,
     "telephone": "+91 7303437659",
     "email": "zentararealty@gmail.com",
     "description":
-      "Residential real estate consultancy specializing in pre-launch and newly launched residential projects in Gurgaon.",
+      "Independent residential real estate consultancy based in Gurugram, Haryana. Specializing exclusively in pre-launch, upcoming, and newly launched residential developments, luxury apartments, and condominiums across Gurgaon.",
     "slogan": "Discover What's Next in Residential Living.",
-    "areaServed": {
-      "@type": "AdministrativeArea",
-      "name": "Gurugram, Haryana, India",
-    },
+    "priceRange": "₹₹₹₹",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "Prime Residential Corridor",
       "addressLocality": "Gurugram",
       "addressRegion": "Haryana",
+      "postalCode": "122002",
       "addressCountry": "IN",
     },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 28.4595,
+      "longitude": 77.0266,
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        "opens": "09:00",
+        "closes": "20:00",
+      },
+    ],
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Gurugram",
+        "sameAs": "https://en.wikipedia.org/wiki/Gurgaon",
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Dwarka Expressway",
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Golf Course Extension Road",
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Southern Peripheral Road",
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "New Gurgaon",
+      },
+    ],
     "knowsAbout": [
       "Pre-Launch Residential Projects in Gurgaon",
       "New Launch Residential Projects in Gurgaon",
@@ -32,55 +81,143 @@ export default function StructuredData() {
       "Dwarka Expressway Residential Developments",
       "Southern Peripheral Road Residential Projects",
       "New Gurgaon Residential Developments",
+      "Haryana RERA Compliance & Project Verification",
     ],
   };
 
+  // 2. Organization Schema
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://zentararealty.property/#organization",
+    "@id": `${baseUrl}/#organization`,
     "name": "Zentara Realty",
-    "url": "https://zentararealty.property",
-    "logo": "https://zentararealty.property/logo.svg",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+91 7303437659",
-      "contactType": "customer service",
-      "email": "zentararealty@gmail.com",
-      "areaServed": "IN",
-      "availableLanguage": ["English", "Hindi"],
-    },
+    "url": baseUrl,
+    "logo": `${baseUrl}/logo.svg`,
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+91 7303437659",
+        "contactType": "customer service",
+        "email": "zentararealty@gmail.com",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Hindi"],
+      },
+    ],
   };
 
+  // 3. WebSite Schema
   const webSiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://zentararealty.property/#website",
-    "url": "https://zentararealty.property",
+    "@id": `${baseUrl}/#website`,
+    "url": baseUrl,
     "name": "Zentara Realty",
     "description":
       "Discover pre-launch and newly launched residential projects in Gurgaon with Zentara Realty.",
     "publisher": {
-      "@id": "https://zentararealty.property/#organization",
+      "@id": `${baseUrl}/#organization`,
     },
     "inLanguage": "en-IN",
   };
 
+  // 4. WebPage Schema
   const webPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": "https://zentararealty.property/#webpage",
-    "url": "https://zentararealty.property",
+    "@id": `${baseUrl}/#webpage`,
+    "url": baseUrl,
     "name": "Zentara Realty | New Residential Projects in Gurgaon",
     "description":
       "Discover pre-launch and newly launched residential projects in Gurgaon with Zentara Realty. Explore new residential developments and opportunities in Gurugram.",
     "isPartOf": {
-      "@id": "https://zentararealty.property/#website",
+      "@id": `${baseUrl}/#website`,
     },
     "about": {
-      "@id": "https://zentararealty.property/#realestateagent",
+      "@id": `${baseUrl}/#realestateagent`,
+    },
+    "primaryImageOfPage": {
+      "@type": "ImageObject",
+      "url": `${baseUrl}/images/hero-architecture.jpg`,
     },
     "inLanguage": "en-IN",
+  };
+
+  // 5. BreadcrumbList Schema
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${baseUrl}/#breadcrumb`,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": baseUrl,
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Residential Projects Gurgaon",
+        "item": `${baseUrl}/#pre-launch`,
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Consultation",
+        "item": `${baseUrl}/#contact`,
+      },
+    ],
+  };
+
+  // 6. FAQPage Schema (AEO Engine Optimization for SearchGPT, Perplexity, Gemini, Google AI)
+  const faqPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${baseUrl}/#faqpage`,
+    "mainEntity": FAQS.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })),
+  };
+
+  // 7. ItemList Schema (Curated Residential Corridors)
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${baseUrl}/#corridors-list`,
+    "name": "Gurugram Residential Corridors Portfolio",
+    "description": "Featured primary residential growth corridors in Gurgaon, Haryana.",
+    "numberOfItems": 4,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Golf Course Extension Road Ultra-Luxury Residences",
+        "description": "High-end luxury condominiums with panoramic views and premier connectivity.",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Dwarka Expressway Eco-Luxury High-Rise Developments",
+        "description": "Airport-connected smart residences with non-stop Delhi access.",
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Southern Peripheral Road (SPR) Forest-Themed Enclaves",
+        "description": "Low-density nature-flanked residential towers near Cyber City 2.",
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "New Gurgaon Integrated Master-Planned Communities",
+        "description": "Contemporary multi-tier townships with direct NH-48 connectivity.",
+      },
+    ],
   };
 
   return (
@@ -101,7 +238,18 @@ export default function StructuredData() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
     </>
   );
 }
-

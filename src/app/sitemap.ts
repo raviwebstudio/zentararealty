@@ -10,18 +10,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "weekly",
       priority: 1.0,
+      images: [
+        `${baseUrl}/images/hero-architecture.jpg`,
+        `${baseUrl}/images/about-lifestyle.jpg`,
+        `${baseUrl}/images/prelaunch-architecture.jpg`,
+        `${baseUrl}/images/dwarka-expressway.jpg`,
+        `${baseUrl}/images/spr-residences.jpg`,
+        `${baseUrl}/images/new-gurgaon.jpg`,
+        `${baseUrl}/images/newlaunch-architecture.jpg`,
+        `${baseUrl}/images/why-choose-consultation.jpg`,
+      ],
     },
     {
       url: `${baseUrl}/privacy-policy`,
       lastModified,
       changeFrequency: "monthly",
-      priority: 0.3,
+      priority: 0.4,
     },
     {
       url: `${baseUrl}/terms-and-conditions`,
       lastModified,
       changeFrequency: "monthly",
-      priority: 0.3,
+      priority: 0.4,
     },
   ];
 }
