@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80" fill="none">
+  <!-- Monogram Emblem -->
+  <g transform="translate(10, 8)">
+    <!-- Outer Octagonal / Architectural Frame -->
+    <rect x="2" y="2" width="60" height="60" rx="8" stroke="#102B50" stroke-width="2" fill="#FFFFFF"/>
+    <rect x="7" y="7" width="50" height="50" rx="5" stroke="#C5A46D" stroke-width="1.2" stroke-dasharray="2 2" fill="none"/>
+    
+    <!-- Stylized Architectural 'Z' and Tower Motif -->
+    <path d="M19 22H45L23 42H45" stroke="#102B50" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M32 15V22M32 42V49" stroke="#C5A46D" stroke-width="2" stroke-linecap="round"/>
+    <!-- Central Golden Accent Diamond -->
+    <polygon points="32,29 35,32 32,35 29,32" fill="#C5A46D"/>
+  </g>
+  
+  <!-- Brand Typography -->
+  <text x="88" y="38" font-family="'Cinzel', 'Cormorant Garamond', 'Times New Roman', serif" font-size="25" font-weight="700" letter-spacing="4" fill="#102B50">
+    ZENTARA
+  </text>
+  <text x="256" y="38" font-family="'Cinzel', 'Cormorant Garamond', 'Times New Roman', serif" font-size="25" font-weight="400" letter-spacing="4" fill="#C5A46D">
+    REALTY
+  </text>
+  <line x1="88" y1="47" x2="395" y2="47" stroke="#C5A46D" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="89" y="60" font-family="'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif" font-size="8.5" font-weight="600" letter-spacing="3" fill="#55647A">
+    RESIDENTIAL CONSULTANCY • GURUGRAM
+  </text>
+</svg>

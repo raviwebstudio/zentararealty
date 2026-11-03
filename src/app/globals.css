@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@source "../components";
+@source "../app";
+
+@layer base {
+  :root {
+    --brand-navy: #102B50;
+    --brand-navy-dark: #0B1B32;
+    --brand-navy-light: #1A3E70;
+    --brand-gold: #C5A46D;
+    --brand-gold-hover: #B8955C;
+    --brand-gold-light: #F4EFE6;
+    --brand-gold-border: #D8C39D;
+    --brand-bg: #F7F8FA;
+    --brand-text: #202938;
+    --brand-muted: #55647A;
+    --brand-border: #E5E9F0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  body {
+    background-color: var(--brand-bg);
+    color: var(--brand-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom Serif Headings */
+  .font-serif-heading {
+    font-family: 'Cormorant Garamond', 'Cinzel', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  }
+
+  /* Custom Focus Ring for Accessibility */
+  :focus-visible {
+    outline: 2px solid #C5A46D;
+    outline-offset: 2px;
+  }
+}
+
+/* Luxury Grain & Gradient Highlights */
+.bg-navy-gradient {
+  background: linear-gradient(135deg, #0B1B32 0%, #102B50 60%, #173863 100%);
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #C5A46D 0%, #D8BE8E 50%, #B8955C 100%);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #C5A46D 0%, #E3CCA3 50%, #B8955C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border-glow {
+  box-shadow: 0 0 20px -5px rgba(197, 164, 109, 0.25);
+}
+
+/* Subtle architectural grid pattern */
+.bg-architectural-grid {
+  background-image: 
+    linear-gradient(to right, rgba(16, 43, 80, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 43, 80, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.bg-architectural-grid-dark {
+  background-image: 
+    linear-gradient(to right, rgba(197, 164, 109, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(197, 164, 109, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Smooth Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

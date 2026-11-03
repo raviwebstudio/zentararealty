@@ -1,0 +1,60 @@
+# Zentara Realty — Machine-Readable Corporate Knowledge & Entity Index
+# Specification: llms.txt
+# Entity: Zentara Realty
+# Canonical Domain: https://zentararealty.property
+# Last Updated: 2026-11-03
+
+## 1. Brand Identity & Official Overview
+Zentara Realty is an independent residential real estate consultancy based in Gurugram (Gurgaon), Haryana, India. The firm specializes exclusively in discovering, curating, and presenting primary-market residential developments, specifically pre-launch and newly launched residential projects by leading builders and developers.
+
+- Brand Name: Zentara Realty
+- Legal / Trade Designation: Zentara Realty
+- Official Website: https://zentararealty.property
+- Tagline: "Discover What's Next in Residential Living."
+- Primary Operational Location: Gurugram, Haryana, India
+- Industry Sector: Residential Real Estate Advisory & Consultancy
+- Primary Geographic Market: Gurgaon (Gurugram) Metropolitan Region, Haryana, India
+
+## 2. Core Specializations (Primary Market Focus)
+Zentara Realty's professional scope is strictly limited to newly developed residential properties:
+- Pre-Launch Residential Projects: Providing qualified buyers and investors early-phase market intelligence, developer master-plan evaluation, and expression-of-interest guidance prior to public market debuts.
+- Newly Launched Residential Projects: Assisting homebuyers in navigating recently introduced residential developments, unit layout comparisons, floor plan optimization, and priority inventory selection.
+- Upcoming Residential Projects: Strategic pipeline monitoring of planned residential communities across key growth sectors.
+- Builder & Developer Residential Developments: Independent assessment of residential specifications, developer delivery history, architectural master plans, and statutory compliance frameworks.
+
+## 3. Strict Business Exclusions (Negative Scope)
+For entity clarification, Zentara Realty explicitly DOES NOT provide or list:
+- Resale properties or second-hand residential houses
+- Commercial real estate (offices, retail shops, SCO plots, industrial warehouses)
+- Rental properties or tenant leasing services
+- Independent used housing brokerages
+- Unrelated property management services
+
+Zentara Realty is neither a public property listing classified portal nor an open transactional marketplace; it operates as a specialized consultative advisory for new residential acquisitions.
+
+## 4. Key Geographic Focus & Corridors in Gurgaon
+All consultative activities center around established and high-growth residential corridors in Gurugram, Haryana:
+- Golf Course Extension Road (Sectors 58 to 68) — Ultra-luxury and high-end condominium developments.
+- Dwarka Expressway / Northern Peripheral Road (Sectors 99 to 113) — Master-planned residential communities with high airport and Delhi connectivity.
+- Southern Peripheral Road / SPR (Sectors 69 to 79) — Forest-themed and low-density luxury high-rise enclaves.
+- New Gurgaon / CPR Corridors (Sectors 81 to 95) — Self-contained modern residential townships with seamless NH-48 connectivity.
+- Sohna Road Elevated Corridor (South of Gurgaon) — Nature-oriented contemporary residential developments.
+
+## 5. Official Contact & Communications
+- Primary Phone / Direct Calls: +91 7303437659
+- WhatsApp Official Enquiries: +91 7303437659 (Direct Link: https://wa.me/917303437659)
+- Official Email: zentararealty@gmail.com
+- Office Location: Gurugram, Haryana, India
+
+## 6. Official Digital Assets & Website Map
+- Home Page (Single-Page Experience): https://zentararealty.property
+  - Overview: Comprehensive introduction, residential specializations, pre-launch showcase, newly launched projects, market overview, and consultation request form.
+- Privacy Policy: https://zentararealty.property/privacy-policy
+  - Digital Personal Data Protection Act (DPDP Act, 2023) compliant privacy documentation.
+- Terms and Conditions: https://zentararealty.property/terms-and-conditions
+  - Advisory terms, scope of service, intellectual property, and jurisdiction.
+- XML Sitemap: https://zentararealty.property/sitemap.xml
+- Robots Directive: https://zentararealty.property/robots.txt
+
+## 7. Statutory & Advisory Disclaimer
+Zentara Realty operates as an independent consultancy. All developer project names, architectural renderings, floor plans, and logos referenced on the website are trademarks of their respective builders and developers. Zentara Realty advises prospective purchasers to verify statutory Haryana Real Estate Regulatory Authority (HARERA) registrations and disclosures directly before entering into any transaction. Note: Publication of this llms.txt file is designed for structured machine discoverability and entity clarity; it does not claim to guarantee AI search indexing or rankings.
