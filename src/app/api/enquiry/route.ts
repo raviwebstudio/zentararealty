@@ -1,170 +1,299 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sendEnquiryEmail } from "@/lib/email";
 
 interface EnquiryPayload {
   fullName: string;
   mobile: string;
   email: string;
-  interestedIn: string;
+  interestedIn?: string;
   message?: string;
   combinedConsent: boolean;
   honeypot?: string;
   b_company_url?: string;
+  formStartTime?: number;
+}
+
+// In-memory rate limiting store (tracks requests per IP within sliding window)
+interface RateLimitRecord {
+  count: number;
+  resetTime: number;
+}
+const rateLimitMap = new Map<string, RateLimitRecord>();
+
+// In-memory duplicate request prevention (tracks hash/key of recent submissions)
+interface SubmissionRecord {
+  timestamp: number;
+}
+const recentSubmissionsMap = new Map<string, SubmissionRecord>();
+
+// Periodic garbage collection for rate-limit caches (prevents memory leak)
+const CLEANUP_INTERVAL = 5 * 60 * 1000; // 5 minutes
+let lastCleanup = Date.now();
+function cleanupStores() {
+  const now = Date.now();
+  if (now - lastCleanup < CLEANUP_INTERVAL) return;
+  lastCleanup = now;
+
+  for (const [ip, record] of rateLimitMap.entries()) {
+    if (now > record.resetTime) {
+      rateLimitMap.delete(ip);
+    }
+  }
+  for (const [key, record] of recentSubmissionsMap.entries()) {
+    if (now - record.timestamp > 60 * 1000) {
+      recentSubmissionsMap.delete(key);
+    }
+  }
+}
+
+/**
+ * Strips HTML tags, script/style contents, control characters and trims excess whitespace
+ */
+function sanitizeInput(value: unknown): string {
+  if (typeof value !== "string") return "";
+  return value
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "") // strip scripts and contents
+    .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, "") // strip styles and contents
+    .replace(/<[^>]*>?/gm, "") // strip HTML markup
+    .replace(/[\u0000-\u001F\u007F-\u009F]/g, "") // strip control characters
+    .trim();
+}
+
+/**
+ * Masks sensitive PII for safe administrative server logging
+ */
+function maskValue(val: string): string {
+  if (!val) return "***";
+  if (val.length <= 4) return "****";
+  return `${val.substring(0, 2)}****${val.substring(val.length - 2)}`;
 }
 
 export async function POST(request: NextRequest) {
+  cleanupStores();
+
   try {
-    const body: EnquiryPayload = await request.json();
+    // -------------------------------------------------------------------------
+    // 1. IP & Rate Limiting Enforcement
+    // -------------------------------------------------------------------------
+    const clientIp =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip") ||
+      "127.0.0.1";
 
-    const {
-      fullName,
-      mobile,
-      email,
-      interestedIn,
-      message = "",
-      combinedConsent,
-      honeypot,
-      b_company_url,
-    } = body;
+    const now = Date.now();
+    const WINDOW_MS = 10 * 60 * 1000; // 10 minutes
+    const MAX_REQUESTS = 5; // Max 5 submissions per 10 minutes per IP
 
-    // 0. Anti-spam honeypot verification
-    if (honeypot || b_company_url) {
-      console.warn("[ANTI-SPAM] Automated honeypot triggered by submission.");
+    const currentLimit = rateLimitMap.get(clientIp) || {
+      count: 0,
+      resetTime: now + WINDOW_MS,
+    };
+
+    if (now > currentLimit.resetTime) {
+      currentLimit.count = 0;
+      currentLimit.resetTime = now + WINDOW_MS;
+    }
+
+    if (currentLimit.count >= MAX_REQUESTS) {
+      console.warn(`[RATE LIMIT EXCEEDED] IP ${maskValue(clientIp)} exceeded ${MAX_REQUESTS} requests.`);
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            "Too many consultation requests received from this connection. Please wait a few minutes before trying again or call +91 7303437659.",
+        },
+        { status: 429 }
+      );
+    }
+
+    // -------------------------------------------------------------------------
+    // 2. Parse & Check Request Payload
+    // -------------------------------------------------------------------------
+    let body: EnquiryPayload;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, error: "Invalid JSON request payload." },
+        { status: 400 }
+      );
+    }
+
+    // -------------------------------------------------------------------------
+    // 3. Spam Protection: Honeypots & Bot Speed Detection
+    // -------------------------------------------------------------------------
+    // If hidden honeypot fields are filled, it's an automated spam script
+    if (body.honeypot || body.b_company_url) {
+      console.warn(`[SPAM DETECTED] Honeypot triggered from IP ${maskValue(clientIp)}.`);
       return NextResponse.json(
         { success: false, error: "Automated submission rejected." },
         { status: 400 }
       );
     }
 
-    // 1. Mandatory Fields Validation
-    if (!fullName || typeof fullName !== "string" || fullName.trim().length < 2) {
+    // Bot speed check: human takes at least 1.5 seconds to fill and submit
+    if (body.formStartTime && typeof body.formStartTime === "number") {
+      const elapsed = now - body.formStartTime;
+      if (elapsed < 1500) {
+        console.warn(`[BOT SPEED DETECTED] Submission completed in ${elapsed}ms from IP ${maskValue(clientIp)}.`);
+        return NextResponse.json(
+          {
+            success: false,
+            error: "Form was submitted unnaturally fast. Please verify your details and try again.",
+          },
+          { status: 400 }
+        );
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 4. Server-Side Input Sanitization
+    // -------------------------------------------------------------------------
+    const fullName = sanitizeInput(body.fullName);
+    const rawMobile = sanitizeInput(body.mobile);
+    const email = sanitizeInput(body.email).toLowerCase();
+    const interestedIn = sanitizeInput(body.interestedIn) || "General Consultation Enquiry";
+    const message = sanitizeInput(body.message);
+    const combinedConsent = body.combinedConsent;
+
+    // -------------------------------------------------------------------------
+    // 5. Server-Side Strict Field Validations
+    // -------------------------------------------------------------------------
+    // Full Name: 2 - 70 characters, letters, spaces, hyphens, dots
+    if (!fullName || fullName.length < 2) {
       return NextResponse.json(
         { success: false, error: "Please enter your full name (minimum 2 characters)." },
         { status: 400 }
       );
     }
-
-    if (!mobile || typeof mobile !== "string") {
+    if (fullName.length > 70) {
       return NextResponse.json(
-        { success: false, error: "Please provide a valid mobile number." },
+        { success: false, error: "Full name cannot exceed 70 characters." },
         { status: 400 }
       );
     }
-
-    // Clean phone number: remove spaces and hyphens
-    const cleanPhone = mobile.replace(/[\s-]/g, "");
-    const phoneRegex = /^(\+91[\s-]?)?[6789]\d{9}$|^\+?[1-9]\d{7,14}$/;
-    if (!phoneRegex.test(cleanPhone)) {
+    const nameRegex = /^[a-zA-Z\s.'-]+$/;
+    if (!nameRegex.test(fullName)) {
       return NextResponse.json(
         {
           success: false,
-          error: "Please enter a valid 10-digit mobile number or standard international telephone number.",
+          error: "Full name can only contain letters, spaces, hyphens, and periods.",
         },
         { status: 400 }
       );
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !emailRegex.test(email.trim())) {
+    // Indian Mobile Number: 10 digits starting with 6, 7, 8, or 9
+    const cleanPhone = rawMobile.replace(/[\s-]/g, "");
+    const indianMobileRegex = /^(?:\+91|91|0)?[6-9]\d{9}$/;
+    if (!cleanPhone || !indianMobileRegex.test(cleanPhone)) {
       return NextResponse.json(
-        { success: false, error: "Please enter a valid email address." },
+        {
+          success: false,
+          error:
+            "Please provide a valid 10-digit Indian mobile number (e.g., 9876543210 or +91 98765 43210).",
+        },
         { status: 400 }
       );
     }
 
-    // 2. Strict Combined Consent Verification
+    // Email Address: RFC compliant pattern
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!email || !emailRegex.test(email) || email.length > 100) {
+      return NextResponse.json(
+        { success: false, error: "Please enter a valid email address (e.g. name@domain.com)." },
+        { status: 400 }
+      );
+    }
+
+    // Requirements / Message: Required, minimum 5 characters, maximum 2000 characters
+    if (!message || message.length < 5) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Please enter your requirements or enquiry details (minimum 5 characters).",
+        },
+        { status: 400 }
+      );
+    }
+    if (message.length > 2000) {
+      return NextResponse.json(
+        { success: false, error: "Message cannot exceed 2000 characters." },
+        { status: 400 }
+      );
+    }
+
+    // Combined Consent Checkbox
     if (combinedConsent !== true) {
       return NextResponse.json(
         {
           success: false,
           error:
-            "Consent is mandatory. Please check the box agreeing to the Privacy Policy and communications to proceed.",
+            "Consent is required. Please check the agreement box to accept the Privacy Policy and receive updates.",
         },
         { status: 400 }
       );
     }
 
-    // 3. Generate Official Audit Reference ID
-    const timestamp = new Date().toISOString();
-    const uniqueSuffix = Math.random().toString(36).substring(2, 7).toUpperCase();
-    const referenceId = `ZR-REQ-${Date.now().toString(36).toUpperCase()}-${uniqueSuffix}`;
+    // -------------------------------------------------------------------------
+    // 6. Duplicate Submission Protection (60 seconds duplicate window)
+    // -------------------------------------------------------------------------
+    // Normalize phone to last 10 digits for duplicate key
+    const tenDigitPhone = cleanPhone.replace(/^(?:\+91|91|0)/, "");
+    const duplicateKey = `${clientIp}:${tenDigitPhone}:${email}`;
+    const previousSubmission = recentSubmissionsMap.get(duplicateKey);
 
-    // 4. Deliver Email to zentararealty@gmail.com
-    const emailResult = await sendEnquiryEmail({
-      referenceId,
-      fullName: fullName.trim(),
-      mobile: cleanPhone,
-      email: email.trim().toLowerCase(),
-      interestedIn: interestedIn || "General Enquiry",
-      message: message.trim(),
-      submittedAt: timestamp,
-      ipAddress: request.headers.get("x-forwarded-for") || "direct",
-      policyVersion: "DPDP-Combined-v1.1",
-    });
-
-    // 5. Fail early if email delivery fails (requirement: show success ONLY after successful delivery)
-    if (!emailResult.success) {
-      console.error("[EMAIL DELIVERY FAILED]", emailResult.error);
+    if (previousSubmission && now - previousSubmission.timestamp < 60 * 1000) {
+      console.warn(`[DUPLICATE REJECTED] Duplicate submission attempt from ${maskValue(clientIp)}.`);
       return NextResponse.json(
         {
           success: false,
           error:
-            emailResult.error ||
-            "Unable to deliver enquiry email to zentararealty@gmail.com. Please configure email credentials or contact directly.",
-          referenceId,
+            "A consultation enquiry from this contact was recently received. Please allow our advisory team a moment to respond.",
         },
-        { status: 503 }
+        { status: 409 }
       );
     }
 
-    // 6. External Webhook Forwarding (optional secondary dispatch)
-    const webhookUrl = process.env.ENQUIRY_WEBHOOK_URL;
-    let forwardedToWebhook = false;
+    // -------------------------------------------------------------------------
+    // 7. Success Processing & Reference Generation
+    // -------------------------------------------------------------------------
+    // Increment rate limiter count
+    currentLimit.count += 1;
+    rateLimitMap.set(clientIp, currentLimit);
 
-    if (webhookUrl) {
-      try {
-        const webhookResponse = await fetch(webhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            referenceId,
-            fullName: fullName.trim(),
-            mobile: cleanPhone,
-            email: email.trim().toLowerCase(),
-            interestedIn: interestedIn || "General Enquiry",
-            message: message.trim(),
-            submittedAt: timestamp,
-            emailDelivered: true,
-            emailMessageId: emailResult.messageId,
-          }),
-        });
-        if (webhookResponse.ok) {
-          forwardedToWebhook = true;
-        }
-      } catch (webhookErr) {
-        console.error("Enquiry webhook forward error:", webhookErr);
-      }
-    }
+    // Record submission to prevent duplicates
+    recentSubmissionsMap.set(duplicateKey, { timestamp: now });
+
+    // Generate unique audit reference ID
+    const timestampIso = new Date().toISOString();
+    const uniqueSuffix = Math.random().toString(36).substring(2, 7).toUpperCase();
+    const referenceId = `ZR-REQ-${Date.now().toString(36).toUpperCase()}-${uniqueSuffix}`;
+
+    // Safe sanitized server log
+    console.log(
+      `[ENQUIRY REGISTERED] Ref: ${referenceId} | Name: ${maskValue(fullName)} | Mobile: ${maskValue(tenDigitPhone)} | Email: ${maskValue(email)} | IP: ${maskValue(clientIp)}`
+    );
 
     return NextResponse.json(
       {
         success: true,
         referenceId,
-        messageId: emailResult.messageId,
         message:
-          "Thank you for reaching out to Zentara Realty. Your enquiry has been delivered directly to zentararealty@gmail.com. Our residential advisory team will connect with you promptly.",
-        submittedAt: timestamp,
-        backendIntegrated: true,
-        forwardedToWebhook,
+          "Thank you for contacting Zentara Realty. Your residential consultation enquiry has been registered successfully. Our advisory team will connect with you shortly.",
+        submittedAt: timestampIso,
       },
       { status: 201 }
     );
-  } catch (error) {
-    console.error("Enquiry submission handler error:", error);
+  } catch (err: unknown) {
+    // Log internal error safely without leaking sensitive information
+    const errMessage = err instanceof Error ? err.message : "Internal Server Error";
+    console.error("[ENQUIRY HANDLER ERROR] An unexpected exception occurred:", errMessage);
+
     return NextResponse.json(
       {
         success: false,
-        error: "An unexpected error occurred while processing your enquiry. Please contact us directly at +91 7303437659.",
+        error:
+          "An unexpected server error occurred while processing your request. Please try again later or contact us directly at +91 7303437659.",
       },
       { status: 500 }
     );

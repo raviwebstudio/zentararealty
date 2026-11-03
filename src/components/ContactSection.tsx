@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   Phone,
+  MessageSquare,
   Mail,
   MapPin,
-  MessageSquare,
   Send,
   CheckCircle2,
   AlertCircle,
@@ -14,6 +14,22 @@ import {
   Sparkles,
   Info,
 } from "lucide-react";
+
+interface FieldErrors {
+  fullName?: string;
+  mobile?: string;
+  email?: string;
+  message?: string;
+  combinedConsent?: string;
+}
+
+interface TouchedFields {
+  fullName?: boolean;
+  mobile?: boolean;
+  email?: boolean;
+  message?: boolean;
+  combinedConsent?: boolean;
+}
 
 export default function ContactSection() {
   const [fullName, setFullName] = useState("");
@@ -25,48 +41,129 @@ export default function ContactSection() {
   // Combined Consent State (Unchecked by default)
   const [combinedConsent, setCombinedConsent] = useState(false);
 
-  // Anti-spam honeypot
+  // Anti-spam honeypot (bots fill this, humans never see it)
   const [honeypot, setHoneypot] = useState("");
 
-  // Form Submission States
+  // Bot speed detection timestamp (deferred to client mount to allow static prerender)
+  const [formStartTime, setFormStartTime] = useState<number>(0);
+
+  useEffect(() => {
+    setFormStartTime(Date.now());
+  }, []);
+
+  // Form Validation & Interaction States
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [touched, setTouched] = useState<TouchedFields>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [submissionSuccess, setSubmissionSuccess] = useState<{
     referenceId: string;
     submittedAt: string;
     message: string;
-    backendIntegrated: boolean;
   } | null>(null);
+
+  // Validation functions for individual fields
+  const validateSingleField = (field: keyof FieldErrors, value: unknown): string | undefined => {
+    switch (field) {
+      case "fullName": {
+        const str = typeof value === "string" ? value.trim() : "";
+        if (!str) return "Full Name is required.";
+        if (str.length < 2) return "Full Name must be at least 2 characters.";
+        if (str.length > 70) return "Full Name cannot exceed 70 characters.";
+        const nameRegex = /^[a-zA-Z\s.'-]+$/;
+        if (!nameRegex.test(str)) {
+          return "Name can only contain letters, spaces, hyphens, and dots.";
+        }
+        return undefined;
+      }
+
+      case "mobile": {
+        const str = typeof value === "string" ? value.replace(/[\s-]/g, "") : "";
+        if (!str) return "Indian mobile number is required.";
+        const indianMobileRegex = /^(?:\+91|91|0)?[6-9]\d{9}$/;
+        if (!indianMobileRegex.test(str)) {
+          return "Please enter a valid 10-digit Indian mobile number (e.g. 9876543210).";
+        }
+        return undefined;
+      }
+
+      case "email": {
+        const str = typeof value === "string" ? value.trim() : "";
+        if (!str) return "Email address is required.";
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(str)) {
+          return "Please enter a valid email address (e.g. name@domain.com).";
+        }
+        return undefined;
+      }
+
+      case "message": {
+        const str = typeof value === "string" ? value.trim() : "";
+        if (!str) return "Please enter your requirements or message details.";
+        if (str.length < 5) return "Message must be at least 5 characters.";
+        if (str.length > 2000) return "Message cannot exceed 2000 characters.";
+        return undefined;
+      }
+
+      case "combinedConsent": {
+        if (!value) {
+          return "Consent is required. Please check the agreement box to proceed.";
+        }
+        return undefined;
+      }
+
+      default:
+        return undefined;
+    }
+  };
+
+  // Validate entire form and return validation map
+  const validateAll = (): FieldErrors => {
+    return {
+      fullName: validateSingleField("fullName", fullName),
+      mobile: validateSingleField("mobile", mobile),
+      email: validateSingleField("email", email),
+      message: validateSingleField("message", message),
+      combinedConsent: validateSingleField("combinedConsent", combinedConsent),
+    };
+  };
+
+  const handleFieldBlur = (field: keyof FieldErrors, value: unknown) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+    const error = validateSingleField(field, value);
+    setFieldErrors((prev) => ({ ...prev, [field]: error }));
+  };
+
+  const handleFieldChange = (field: keyof FieldErrors, value: unknown) => {
+    if (touched[field]) {
+      const error = validateSingleField(field, value);
+      setFieldErrors((prev) => ({ ...prev, [field]: error }));
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
 
-    // Client-side validations
-    if (!fullName.trim() || fullName.trim().length < 2) {
-      setErrorMessage("Please enter your full name (minimum 2 characters).");
-      return;
-    }
+    // Prevent duplicate submission if already processing
+    if (isSubmitting) return;
 
-    const cleanPhone = mobile.replace(/[\s-]/g, "");
-    const phoneRegex = /^(\+91[\s-]?)?[6789]\d{9}$|^\+?[1-9]\d{7,14}$/;
-    if (!cleanPhone || !phoneRegex.test(cleanPhone)) {
-      setErrorMessage(
-        "Please provide a valid 10-digit mobile number or standard international phone number."
-      );
-      return;
-    }
+    // Run client-side validation across all fields
+    const validationErrors = validateAll();
+    const hasErrors = Object.values(validationErrors).some((err) => Boolean(err));
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email.trim() || !emailRegex.test(email.trim())) {
-      setErrorMessage("Please enter a valid email address.");
-      return;
-    }
+    // Mark all fields as touched to display inline errors
+    setTouched({
+      fullName: true,
+      mobile: true,
+      email: true,
+      message: true,
+      combinedConsent: true,
+    });
+    setFieldErrors(validationErrors);
 
-    if (!combinedConsent) {
-      setErrorMessage(
-        "Consent is required. Please check the agreement box to proceed with your consultation request."
-      );
+    if (hasErrors) {
+      setErrorMessage("Please resolve the highlighted errors before submitting.");
       return;
     }
 
@@ -84,6 +181,7 @@ export default function ContactSection() {
           message,
           combinedConsent,
           honeypot,
+          formStartTime,
         }),
       });
 
@@ -98,14 +196,16 @@ export default function ContactSection() {
           referenceId: data.referenceId,
           submittedAt: data.submittedAt,
           message: data.message,
-          backendIntegrated: Boolean(data.backendIntegrated),
         });
-        // Reset form inputs
+
+        // Reset form inputs & validation states on success
         setFullName("");
         setMobile("");
         setEmail("");
         setMessage("");
         setCombinedConsent(false);
+        setFieldErrors({});
+        setTouched({});
       }
     } catch {
       setErrorMessage(
@@ -128,7 +228,7 @@ export default function ContactSection() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#102B50] font-serif-heading tracking-tight leading-tight mb-4">
             Connect With Zentara Realty
           </h2>
-          <p className="text-base sm:text-lg text-[#55647A] leading-relaxed">
+          <p className="text-base sm:lg text-[#55647A] leading-relaxed">
             Discuss upcoming and newly launched residential opportunities in Gurugram with an independent advisory consultant.
           </p>
         </div>
@@ -138,7 +238,7 @@ export default function ContactSection() {
           <div className="lg:col-span-5 space-y-6">
             <div className="p-8 rounded-xl bg-white border border-[#E5E9F0] shadow-sm space-y-6">
               <h3 className="text-xl font-bold text-[#102B50] font-serif-heading">
-                Direct Contact Information
+                Direct Advisory Channels
               </h3>
               <p className="text-xs text-[#55647A] leading-relaxed">
                 Reach our residential advisory team directly via telephone, WhatsApp, or official email for priority assistance.
@@ -160,7 +260,6 @@ export default function ContactSection() {
                     <div className="text-sm font-bold text-[#102B50] group-hover:text-[#C5A46D] transition-colors">
                       +91 7303437659
                     </div>
-                    {/* <div className="text-[11px] text-[#55647A]">Available for advisory calls</div> */}
                   </div>
                 </a>
 
@@ -181,9 +280,6 @@ export default function ContactSection() {
                     <div className="text-sm font-bold text-[#102B50] group-hover:text-emerald-700 transition-colors">
                       +91 7303437659
                     </div>
-                    {/* <div className="text-[11px] text-emerald-600 font-medium">
-                      Instant chat &amp; project brochure sharing
-                    </div> */}
                   </div>
                 </a>
 
@@ -202,11 +298,10 @@ export default function ContactSection() {
                     <div className="text-sm font-bold text-[#102B50] group-hover:text-[#C5A46D] transition-colors break-all">
                       zentararealty@gmail.com
                     </div>
-                    {/* <div className="text-[11px] text-[#55647A]">Formal enquiries &amp; written communications</div> */}
                   </div>
                 </a>
 
-                {/* Location */}
+                {/* Office Location */}
                 <div className="flex items-start gap-4 p-4 rounded-lg bg-[#F7F8FA] border border-[#E5E9F0]">
                   <div className="p-2.5 rounded-md bg-[#102B50] text-[#C5A46D] shrink-0">
                     <MapPin className="w-5 h-5" />
@@ -218,7 +313,6 @@ export default function ContactSection() {
                     <div className="text-sm font-bold text-[#102B50]">
                       Gurugram, Haryana, India
                     </div>
-                    {/* <div className="text-[11px] text-[#55647A]">Primary Market: Gurgaon Metropolitan Region</div> */}
                   </div>
                 </div>
               </div>
@@ -256,25 +350,31 @@ export default function ContactSection() {
                 >
                   <div className="flex items-start gap-3">
                     <CheckCircle2 className="w-6 h-6 text-emerald-600 shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-bold text-sm text-emerald-900 mb-1">
+                    <div className="space-y-2">
+                      <h4 className="font-bold text-sm text-emerald-900">
                         Enquiry Successfully Registered
                       </h4>
-                      <p className="text-xs text-emerald-800 leading-relaxed mb-3">
+                      <p className="text-xs text-emerald-800 leading-relaxed">
                         {submissionSuccess.message}
                       </p>
-                      <div className="p-3 bg-white/80 rounded border border-emerald-200 text-xs font-mono text-emerald-900">
-                        Reference Number: <span className="font-bold">{submissionSuccess.referenceId}</span>
+                      <div className="p-3 bg-white/90 rounded border border-emerald-200 text-xs font-mono text-emerald-900 flex flex-wrap items-center justify-between gap-2">
+                        <span>
+                          Reference: <strong className="text-emerald-950">{submissionSuccess.referenceId}</strong>
+                        </span>
+                        <span className="text-[11px] text-emerald-700">
+                          {new Date(submissionSuccess.submittedAt).toLocaleString("en-IN", {
+                            timeZone: "Asia/Kolkata",
+                            dateStyle: "medium",
+                            timeStyle: "short",
+                          })} IST
+                        </span>
                       </div>
-                      <p className="text-[11px] text-emerald-700 mt-2">
-                        Timestamp: 2026-11-03 22:45 IST
-                      </p>
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* Error Notification Banner */}
+              {/* General Error Notification Banner */}
               {errorMessage && (
                 <div
                   role="alert"
@@ -287,8 +387,12 @@ export default function ContactSection() {
 
               {/* The Form */}
               <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-                {/* Anti-spam honeypot (hidden from human visitors, traps automated bots) */}
-                <div className="hidden" aria-hidden="true" style={{ display: "none" }}>
+                {/* Anti-spam honeypot (hidden from real users, traps bots) */}
+                <div
+                  className="hidden"
+                  aria-hidden="true"
+                  style={{ display: "none", position: "absolute", left: "-9999px" }}
+                >
                   <label htmlFor="b_company_url">Leave this field blank</label>
                   <input
                     id="b_company_url"
@@ -305,62 +409,124 @@ export default function ContactSection() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                   {/* Row 1, Col 1: Full Name */}
                   <div>
-                    <label htmlFor="fullName" className="block text-xs font-bold text-[#102B50] uppercase tracking-wider mb-1.5">
+                    <label
+                      htmlFor="fullName"
+                      className="block text-xs font-bold text-[#102B50] uppercase tracking-wider mb-1.5"
+                    >
                       Full Name <span className="text-rose-500">*</span>
                     </label>
                     <input
                       id="fullName"
+                      name="fullName"
                       type="text"
+                      disabled={isSubmitting}
                       required
                       value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
+                      onChange={(e) => {
+                        setFullName(e.target.value);
+                        handleFieldChange("fullName", e.target.value);
+                      }}
+                      onBlur={() => handleFieldBlur("fullName", fullName)}
                       placeholder="e.g., Rajesh Sharma"
-                      className="w-full h-11 px-4 rounded-md bg-[#F7F8FA] border border-[#E5E9F0] text-sm text-[#202938] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D] transition-all"
+                      className={`w-full h-11 px-4 rounded-md text-sm text-[#202938] transition-all disabled:opacity-60 disabled:cursor-not-allowed ${
+                        fieldErrors.fullName && touched.fullName
+                          ? "bg-rose-50/20 border border-rose-400 focus:border-rose-500 focus:ring-1 focus:ring-rose-400"
+                          : "bg-[#F7F8FA] border border-[#E5E9F0] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D]"
+                      }`}
                     />
+                    {fieldErrors.fullName && touched.fullName && (
+                      <p className="mt-1.5 text-xs text-rose-600 font-medium flex items-center gap-1">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0 text-rose-500" />
+                        <span>{fieldErrors.fullName}</span>
+                      </p>
+                    )}
                   </div>
 
                   {/* Row 1, Col 2: Mobile Number */}
                   <div>
-                    <label htmlFor="mobile" className="block text-xs font-bold text-[#102B50] uppercase tracking-wider mb-1.5">
-                      Mobile Number <span className="text-rose-500">*</span>
+                    <label
+                      htmlFor="mobile"
+                      className="block text-xs font-bold text-[#102B50] uppercase tracking-wider mb-1.5"
+                    >
+                      Indian Mobile Number <span className="text-rose-500">*</span>
                     </label>
                     <input
                       id="mobile"
+                      name="mobile"
                       type="tel"
+                      disabled={isSubmitting}
                       required
                       value={mobile}
-                      onChange={(e) => setMobile(e.target.value)}
+                      onChange={(e) => {
+                        setMobile(e.target.value);
+                        handleFieldChange("mobile", e.target.value);
+                      }}
+                      onBlur={() => handleFieldBlur("mobile", mobile)}
                       placeholder="+91 98765 43210"
-                      className="w-full h-11 px-4 rounded-md bg-[#F7F8FA] border border-[#E5E9F0] text-sm text-[#202938] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D] transition-all"
+                      className={`w-full h-11 px-4 rounded-md text-sm text-[#202938] transition-all disabled:opacity-60 disabled:cursor-not-allowed ${
+                        fieldErrors.mobile && touched.mobile
+                          ? "bg-rose-50/20 border border-rose-400 focus:border-rose-500 focus:ring-1 focus:ring-rose-400"
+                          : "bg-[#F7F8FA] border border-[#E5E9F0] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D]"
+                      }`}
                     />
+                    {fieldErrors.mobile && touched.mobile && (
+                      <p className="mt-1.5 text-xs text-rose-600 font-medium flex items-center gap-1">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0 text-rose-500" />
+                        <span>{fieldErrors.mobile}</span>
+                      </p>
+                    )}
                   </div>
 
                   {/* Row 2, Col 1: Email Address */}
                   <div>
-                    <label htmlFor="email" className="block text-xs font-bold text-[#102B50] uppercase tracking-wider mb-1.5">
+                    <label
+                      htmlFor="email"
+                      className="block text-xs font-bold text-[#102B50] uppercase tracking-wider mb-1.5"
+                    >
                       Email Address <span className="text-rose-500">*</span>
                     </label>
                     <input
                       id="email"
+                      name="email"
                       type="email"
+                      disabled={isSubmitting}
                       required
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        handleFieldChange("email", e.target.value);
+                      }}
+                      onBlur={() => handleFieldBlur("email", email)}
                       placeholder="rajesh@example.com"
-                      className="w-full h-11 px-4 rounded-md bg-[#F7F8FA] border border-[#E5E9F0] text-sm text-[#202938] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D] transition-all"
+                      className={`w-full h-11 px-4 rounded-md text-sm text-[#202938] transition-all disabled:opacity-60 disabled:cursor-not-allowed ${
+                        fieldErrors.email && touched.email
+                          ? "bg-rose-50/20 border border-rose-400 focus:border-rose-500 focus:ring-1 focus:ring-rose-400"
+                          : "bg-[#F7F8FA] border border-[#E5E9F0] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D]"
+                      }`}
                     />
+                    {fieldErrors.email && touched.email && (
+                      <p className="mt-1.5 text-xs text-rose-600 font-medium flex items-center gap-1">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0 text-rose-500" />
+                        <span>{fieldErrors.email}</span>
+                      </p>
+                    )}
                   </div>
 
                   {/* Row 2, Col 2: Area of Interest */}
                   <div>
-                    <label htmlFor="interestedIn" className="block text-xs font-bold text-[#102B50] uppercase tracking-wider mb-1.5">
+                    <label
+                      htmlFor="interestedIn"
+                      className="block text-xs font-bold text-[#102B50] uppercase tracking-wider mb-1.5"
+                    >
                       Area of Interest <span className="text-rose-500">*</span>
                     </label>
                     <select
                       id="interestedIn"
+                      name="interestedIn"
+                      disabled={isSubmitting}
                       value={interestedIn}
                       onChange={(e) => setInterestedIn(e.target.value)}
-                      className="w-full h-11 px-4 rounded-md bg-[#F7F8FA] border border-[#E5E9F0] text-sm text-[#202938] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D] transition-all cursor-pointer"
+                      className="w-full h-11 px-4 rounded-md bg-[#F7F8FA] border border-[#E5E9F0] text-sm text-[#202938] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D] transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       <option value="Pre-Launch Residential Projects">Pre-Launch Residential Projects</option>
                       <option value="Newly Launched Residential Projects">Newly Launched Residential Projects</option>
@@ -370,31 +536,63 @@ export default function ContactSection() {
                   </div>
                 </div>
 
-                {/* Message */}
+                {/* Requirements / Message */}
                 <div>
-                  <label htmlFor="message" className="block text-xs font-bold text-[#102B50] uppercase tracking-wider mb-1.5">
-                    Your Requirements / Message (Optional)
+                  <label
+                    htmlFor="message"
+                    className="block text-xs font-bold text-[#102B50] uppercase tracking-wider mb-1.5"
+                  >
+                    Your Requirements / Message <span className="text-rose-500">*</span>
                   </label>
                   <textarea
                     id="message"
+                    name="message"
                     rows={3}
+                    disabled={isSubmitting}
+                    required
                     value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Preferred sector corridors (e.g. Golf Course Ext., Dwarka Exp., SPR), preferred bedroom typology, or target timelines..."
-                    className="w-full px-4 py-3 rounded-md bg-[#F7F8FA] border border-[#E5E9F0] text-sm text-[#202938] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D] transition-all"
+                    onChange={(e) => {
+                      setMessage(e.target.value);
+                      handleFieldChange("message", e.target.value);
+                    }}
+                    onBlur={() => handleFieldBlur("message", message)}
+                    placeholder="Preferred sector corridors (e.g. Golf Course Ext., Dwarka Exp., SPR), bedroom typology (3BHK/4BHK), or budget expectations..."
+                    className={`w-full px-4 py-3 rounded-md text-sm text-[#202938] transition-all disabled:opacity-60 disabled:cursor-not-allowed ${
+                      fieldErrors.message && touched.message
+                        ? "bg-rose-50/20 border border-rose-400 focus:border-rose-500 focus:ring-1 focus:ring-rose-400"
+                        : "bg-[#F7F8FA] border border-[#E5E9F0] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D]"
+                    }`}
                   />
+                  {fieldErrors.message && touched.message && (
+                    <p className="mt-1.5 text-xs text-rose-600 font-medium flex items-center gap-1">
+                      <AlertCircle className="w-3.5 h-3.5 shrink-0 text-rose-500" />
+                      <span>{fieldErrors.message}</span>
+                    </p>
+                  )}
                 </div>
 
                 {/* COMBINED CONSENT CHECKBOX (SINGLE UNCHECKED CHECKBOX) */}
                 <div className="pt-4 border-t border-[#E5E9F0] space-y-3">
-                  <div className="flex items-start gap-3 p-4 rounded-lg bg-[#F7F8FA] border border-[#E5E9F0] hover:border-[#C5A46D]/50 transition-colors">
+                  <div
+                    className={`flex items-start gap-3 p-4 rounded-lg transition-colors ${
+                      fieldErrors.combinedConsent && touched.combinedConsent
+                        ? "bg-rose-50/30 border border-rose-400"
+                        : "bg-[#F7F8FA] border border-[#E5E9F0] hover:border-[#C5A46D]/50"
+                    }`}
+                  >
                     <input
                       id="combinedConsent"
+                      name="combinedConsent"
                       type="checkbox"
+                      disabled={isSubmitting}
                       required
                       checked={combinedConsent}
-                      onChange={(e) => setCombinedConsent(e.target.checked)}
-                      className="w-4 h-4 rounded text-[#102B50] focus:ring-[#C5A46D] mt-1 cursor-pointer accent-[#102B50] shrink-0"
+                      onChange={(e) => {
+                        setCombinedConsent(e.target.checked);
+                        handleFieldChange("combinedConsent", e.target.checked);
+                      }}
+                      onBlur={() => handleFieldBlur("combinedConsent", combinedConsent)}
+                      className="w-4 h-4 rounded text-[#102B50] focus:ring-[#C5A46D] mt-1 cursor-pointer accent-[#102B50] shrink-0 disabled:opacity-60"
                     />
                     <label htmlFor="combinedConsent" className="text-xs text-[#202938] leading-relaxed cursor-pointer">
                       I agree to the{" "}
@@ -404,6 +602,12 @@ export default function ContactSection() {
                       and consent to receive enquiry-related updates and communications from Zentara Realty through WhatsApp and email.
                     </label>
                   </div>
+                  {fieldErrors.combinedConsent && touched.combinedConsent && (
+                    <p className="text-xs text-rose-600 font-medium flex items-center gap-1">
+                      <AlertCircle className="w-3.5 h-3.5 shrink-0 text-rose-500" />
+                      <span>{fieldErrors.combinedConsent}</span>
+                    </p>
+                  )}
 
                   {/* Combined Consent Explanation and Withdrawal Notice */}
                   <div className="p-3.5 rounded bg-white border border-[#E5E9F0] text-[11px] text-[#55647A] leading-relaxed space-y-1.5">
@@ -420,7 +624,7 @@ export default function ContactSection() {
                   </div>
                 </div>
 
-                {/* Submit Button */}
+                {/* Submit Button with Loading State */}
                 <div className="pt-2">
                   <button
                     type="submit"
@@ -430,7 +634,7 @@ export default function ContactSection() {
                     {isSubmitting ? (
                       <>
                         <div className="w-4 h-4 border-2 border-[#0B1B32] border-t-transparent rounded-full animate-spin" />
-                        <span>Processing Registration...</span>
+                        <span>Processing Consultation Request...</span>
                       </>
                     ) : (
                       <>
