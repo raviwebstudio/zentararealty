@@ -198,6 +198,16 @@ export default function ContactSection() {
           message: data.message,
         });
 
+        // Trigger privacy-safe conversion event in GA4 (STRICTLY NO PII: no name, phone, email, or message text)
+        if (typeof window !== "undefined" && window.gtag) {
+          window.gtag("event", "generate_lead", {
+            event_category: "consultation_enquiry",
+            lead_type: "residential_enquiry",
+            interest_area: interestedIn,
+            reference_id: data.referenceId,
+          });
+        }
+
         // Reset form inputs & validation states on success
         setFullName("");
         setMobile("");

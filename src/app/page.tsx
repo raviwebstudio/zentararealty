@@ -9,7 +9,6 @@ import FaqSection from "@/components/FaqSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
 import StructuredData from "@/components/StructuredData";
 
 export const metadata: Metadata = {
@@ -81,9 +80,6 @@ export default function HomePage() {
     <>
       {/* Structured Data (JSON-LD) for SEO & AI Indexing */}
       <StructuredData />
-
-      {/* Google Analytics 4 (Consent-Controlled) */}
-      <GoogleAnalytics />
 
       {/* Fixed Header & Navigation */}
       <Navbar />
