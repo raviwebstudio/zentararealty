@@ -25,6 +25,9 @@ export default function ContactSection() {
   // Combined Consent State (Unchecked by default)
   const [combinedConsent, setCombinedConsent] = useState(false);
 
+  // Anti-spam honeypot
+  const [honeypot, setHoneypot] = useState("");
+
   // Form Submission States
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -80,6 +83,7 @@ export default function ContactSection() {
           interestedIn,
           message,
           combinedConsent,
+          honeypot,
         }),
       });
 
@@ -283,6 +287,20 @@ export default function ContactSection() {
 
               {/* The Form */}
               <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+                {/* Anti-spam honeypot (hidden from human visitors, traps automated bots) */}
+                <div className="hidden" aria-hidden="true" style={{ display: "none" }}>
+                  <label htmlFor="b_company_url">Leave this field blank</label>
+                  <input
+                    id="b_company_url"
+                    type="text"
+                    name="b_company_url"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </div>
+
                 {/* 2-Row Responsive Grid for First Four Fields (50% each on Desktop, 1-col on Mobile) */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                   {/* Row 1, Col 1: Full Name */}

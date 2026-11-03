@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { sendEnquiryEmail } from "@/lib/email";
 
 interface EnquiryPayload {
   fullName: string;
@@ -7,6 +8,8 @@ interface EnquiryPayload {
   interestedIn: string;
   message?: string;
   combinedConsent: boolean;
+  honeypot?: string;
+  b_company_url?: string;
 }
 
 export async function POST(request: NextRequest) {
@@ -20,7 +23,18 @@ export async function POST(request: NextRequest) {
       interestedIn,
       message = "",
       combinedConsent,
+      honeypot,
+      b_company_url,
     } = body;
+
+    // 0. Anti-spam honeypot verification
+    if (honeypot || b_company_url) {
+      console.warn("[ANTI-SPAM] Automated honeypot triggered by submission.");
+      return NextResponse.json(
+        { success: false, error: "Automated submission rejected." },
+        { status: 400 }
+      );
+    }
 
     // 1. Mandatory Fields Validation
     if (!fullName || typeof fullName !== "string" || fullName.trim().length < 2) {
@@ -75,24 +89,8 @@ export async function POST(request: NextRequest) {
     const uniqueSuffix = Math.random().toString(36).substring(2, 7).toUpperCase();
     const referenceId = `ZR-REQ-${Date.now().toString(36).toUpperCase()}-${uniqueSuffix}`;
 
-    // 4. Consent Audit Record (Combined Privacy + WhatsApp + Email)
-    const consentAuditRecord = {
-      referenceId,
-      combinedConsentGiven: true,
-      privacyConsentGiven: true,
-      whatsappMarketingConsent: true,
-      emailMarketingConsent: true,
-      consentText:
-        "I agree to the Privacy Policy and consent to receive enquiry-related updates and communications from Zentara Realty through WhatsApp and email.",
-      consentTimestamp: timestamp,
-      policyVersion: "DPDP-Combined-v1.1",
-      ipAddress: request.headers.get("x-forwarded-for") || "direct",
-      userAgent: request.headers.get("user-agent") || "unknown",
-      withdrawalNotice: "Revocable anytime by sending STOP on WhatsApp or emailing zentararealty@gmail.com",
-    };
-
-    // 5. Build structured enquiry record
-    const enquiryRecord = {
+    // 4. Deliver Email to zentararealty@gmail.com
+    const emailResult = await sendEnquiryEmail({
       referenceId,
       fullName: fullName.trim(),
       mobile: cleanPhone,
@@ -100,10 +98,26 @@ export async function POST(request: NextRequest) {
       interestedIn: interestedIn || "General Enquiry",
       message: message.trim(),
       submittedAt: timestamp,
-      consentAudit: consentAuditRecord,
-    };
+      ipAddress: request.headers.get("x-forwarded-for") || "direct",
+      policyVersion: "DPDP-Combined-v1.1",
+    });
 
-    // 6. External Webhook Forwarding (if configured in environment)
+    // 5. Fail early if email delivery fails (requirement: show success ONLY after successful delivery)
+    if (!emailResult.success) {
+      console.error("[EMAIL DELIVERY FAILED]", emailResult.error);
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            emailResult.error ||
+            "Unable to deliver enquiry email to zentararealty@gmail.com. Please configure email credentials or contact directly.",
+          referenceId,
+        },
+        { status: 503 }
+      );
+    }
+
+    // 6. External Webhook Forwarding (optional secondary dispatch)
     const webhookUrl = process.env.ENQUIRY_WEBHOOK_URL;
     let forwardedToWebhook = false;
 
@@ -112,7 +126,17 @@ export async function POST(request: NextRequest) {
         const webhookResponse = await fetch(webhookUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(enquiryRecord),
+          body: JSON.stringify({
+            referenceId,
+            fullName: fullName.trim(),
+            mobile: cleanPhone,
+            email: email.trim().toLowerCase(),
+            interestedIn: interestedIn || "General Enquiry",
+            message: message.trim(),
+            submittedAt: timestamp,
+            emailDelivered: true,
+            emailMessageId: emailResult.messageId,
+          }),
         });
         if (webhookResponse.ok) {
           forwardedToWebhook = true;
@@ -126,10 +150,11 @@ export async function POST(request: NextRequest) {
       {
         success: true,
         referenceId,
+        messageId: emailResult.messageId,
         message:
-          "Thank you for reaching out to Zentara Realty. Your residential enquiry has been registered. Our advisory team will contact you directly via WhatsApp or email.",
+          "Thank you for reaching out to Zentara Realty. Your enquiry has been delivered directly to zentararealty@gmail.com. Our residential advisory team will connect with you promptly.",
         submittedAt: timestamp,
-        backendIntegrated: Boolean(webhookUrl),
+        backendIntegrated: true,
         forwardedToWebhook,
       },
       { status: 201 }

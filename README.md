@@ -80,7 +80,46 @@ In compliance with the updated business specification, the enquiry form features
 
 ---
 
-## 5. Build & Deployment Instructions
+## 5. Contact Form Email Integration
+
+Every valid enquiry submitted through the website form is delivered directly to:
+**`zentararealty@gmail.com`**
+
+### Email Features
+- **Branded HTML Template:** Navy Blue (`#102B50`) and Gold (`#C5A46D`) corporate styling with responsive table layout.
+- **Complete Lead Details:** Full Name, 10-Digit Mobile, Email Address, Selected Area of Interest, Client Message, and Submission Timestamp (IST).
+- **Direct WhatsApp Action:** One-click green button inside the email to initiate a WhatsApp chat with the enquirer.
+- **Spam Protection:** Automated invisible honeypot trap, phone regex, email syntax validation, and mandatory consent verification.
+- **Fail-Safe Integrity:** The form shows a success message **only** after confirmed email delivery.
+
+### Configuration (Resend or Gmail SMTP)
+Create a `.env.local` file based on `.env.example`:
+
+#### Option A: Resend API (Recommended for Cloud / Serverless)
+```env
+RESEND_API_KEY=re_your_api_key_here
+RESEND_FROM_EMAIL=onboarding@resend.dev # or your verified domain sender
+NOTIFICATION_EMAIL_TO=zentararealty@gmail.com
+```
+
+#### Option B: Gmail App Password (Zero External Accounts)
+1. Go to your Google Account (`zentararealty@gmail.com`) > Security.
+2. Enable 2-Step Verification.
+3. Search for **App Passwords** (or visit `https://myaccount.google.com/apppasswords`).
+4. Generate a 16-character password for "Zentara Realty Website".
+5. Add to `.env.local`:
+```env
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=zentararealty@gmail.com
+SMTP_PASS=your-16-char-app-password
+NOTIFICATION_EMAIL_TO=zentararealty@gmail.com
+```
+
+---
+
+## 6. Build & Deployment Instructions
 
 ### Development Server
 ```bash

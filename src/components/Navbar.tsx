@@ -73,11 +73,10 @@ export default function Navbar() {
 
       {/* 2. Main Navigation Bar */}
       <nav
-        className={`transition-all duration-300 px-4 sm:px-6 ${
-          scrolled
+        className={`transition-all duration-300 px-4 sm:px-6 ${scrolled
             ? "bg-[#102B50]/95 backdrop-blur-md shadow-lg py-3 border-b border-[#C5A46D]/20"
             : "bg-[#102B50]/90 backdrop-blur-sm py-4 border-b border-white/10"
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Brand Logo */}

@@ -107,8 +107,8 @@ export default function NewLaunchesSection() {
                 type="button"
                 onClick={() => setActiveFilter(cat.id)}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${activeFilter === cat.id
-                    ? "bg-[#102B50] text-white shadow-sm"
-                    : "bg-[#F7F8FA] text-[#55647A] hover:bg-[#E5E9F0]"
+                  ? "bg-[#102B50] text-white shadow-sm"
+                  : "bg-[#F7F8FA] text-[#55647A] hover:bg-[#E5E9F0]"
                   }`}
               >
                 {cat.label}
