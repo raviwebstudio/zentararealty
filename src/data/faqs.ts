@@ -42,3 +42,4 @@ export const FAQS: FaqItem[] = [
       "Homebuyers can schedule a residential consultation by completing the structured consultation form on our website, calling our advisory desk directly at +91 7303437659, connecting via official WhatsApp (+91 7303437659), or emailing zentararealty@gmail.com. Consultations are independent, transparent, and pressure-free.",
   },
 ];
+
