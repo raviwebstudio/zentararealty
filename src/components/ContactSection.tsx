@@ -156,7 +156,7 @@ export default function ContactSection() {
                     <div className="text-sm font-bold text-[#102B50] group-hover:text-[#C5A46D] transition-colors">
                       +91 7303437659
                     </div>
-                    <div className="text-[11px] text-[#55647A]">Available for advisory calls</div>
+                    {/* <div className="text-[11px] text-[#55647A]">Available for advisory calls</div> */}
                   </div>
                 </a>
 
@@ -177,9 +177,9 @@ export default function ContactSection() {
                     <div className="text-sm font-bold text-[#102B50] group-hover:text-emerald-700 transition-colors">
                       +91 7303437659
                     </div>
-                    <div className="text-[11px] text-emerald-600 font-medium">
+                    {/* <div className="text-[11px] text-emerald-600 font-medium">
                       Instant chat &amp; project brochure sharing
-                    </div>
+                    </div> */}
                   </div>
                 </a>
 
@@ -198,7 +198,7 @@ export default function ContactSection() {
                     <div className="text-sm font-bold text-[#102B50] group-hover:text-[#C5A46D] transition-colors break-all">
                       zentararealty@gmail.com
                     </div>
-                    <div className="text-[11px] text-[#55647A]">Formal enquiries &amp; written communications</div>
+                    {/* <div className="text-[11px] text-[#55647A]">Formal enquiries &amp; written communications</div> */}
                   </div>
                 </a>
 
@@ -214,9 +214,7 @@ export default function ContactSection() {
                     <div className="text-sm font-bold text-[#102B50]">
                       Gurugram, Haryana, India
                     </div>
-                    <div className="text-[11px] text-[#55647A]">
-                      Primary Market: Gurgaon Metropolitan Region
-                    </div>
+                    {/* <div className="text-[11px] text-[#55647A]">Primary Market: Gurgaon Metropolitan Region</div> */}
                   </div>
                 </div>
               </div>
@@ -285,24 +283,25 @@ export default function ContactSection() {
 
               {/* The Form */}
               <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-                {/* Full Name */}
-                <div>
-                  <label htmlFor="fullName" className="block text-xs font-bold text-[#102B50] uppercase tracking-wider mb-1.5">
-                    Full Name <span className="text-rose-500">*</span>
-                  </label>
-                  <input
-                    id="fullName"
-                    type="text"
-                    required
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    placeholder="e.g., Rajesh Sharma"
-                    className="w-full px-4 py-3 rounded-md bg-[#F7F8FA] border border-[#E5E9F0] text-sm text-[#202938] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D] transition-all"
-                  />
-                </div>
+                {/* 2-Row Responsive Grid for First Four Fields (50% each on Desktop, 1-col on Mobile) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                  {/* Row 1, Col 1: Full Name */}
+                  <div>
+                    <label htmlFor="fullName" className="block text-xs font-bold text-[#102B50] uppercase tracking-wider mb-1.5">
+                      Full Name <span className="text-rose-500">*</span>
+                    </label>
+                    <input
+                      id="fullName"
+                      type="text"
+                      required
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      placeholder="e.g., Rajesh Sharma"
+                      className="w-full h-11 px-4 rounded-md bg-[#F7F8FA] border border-[#E5E9F0] text-sm text-[#202938] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D] transition-all"
+                    />
+                  </div>
 
-                {/* Mobile & Email Row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Row 1, Col 2: Mobile Number */}
                   <div>
                     <label htmlFor="mobile" className="block text-xs font-bold text-[#102B50] uppercase tracking-wider mb-1.5">
                       Mobile Number <span className="text-rose-500">*</span>
@@ -314,10 +313,11 @@ export default function ContactSection() {
                       value={mobile}
                       onChange={(e) => setMobile(e.target.value)}
                       placeholder="+91 98765 43210"
-                      className="w-full px-4 py-3 rounded-md bg-[#F7F8FA] border border-[#E5E9F0] text-sm text-[#202938] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D] transition-all"
+                      className="w-full h-11 px-4 rounded-md bg-[#F7F8FA] border border-[#E5E9F0] text-sm text-[#202938] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D] transition-all"
                     />
                   </div>
 
+                  {/* Row 2, Col 1: Email Address */}
                   <div>
                     <label htmlFor="email" className="block text-xs font-bold text-[#102B50] uppercase tracking-wider mb-1.5">
                       Email Address <span className="text-rose-500">*</span>
@@ -329,27 +329,27 @@ export default function ContactSection() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="rajesh@example.com"
-                      className="w-full px-4 py-3 rounded-md bg-[#F7F8FA] border border-[#E5E9F0] text-sm text-[#202938] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D] transition-all"
+                      className="w-full h-11 px-4 rounded-md bg-[#F7F8FA] border border-[#E5E9F0] text-sm text-[#202938] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D] transition-all"
                     />
                   </div>
-                </div>
 
-                {/* Interested In */}
-                <div>
-                  <label htmlFor="interestedIn" className="block text-xs font-bold text-[#102B50] uppercase tracking-wider mb-1.5">
-                    Area of Interest <span className="text-rose-500">*</span>
-                  </label>
-                  <select
-                    id="interestedIn"
-                    value={interestedIn}
-                    onChange={(e) => setInterestedIn(e.target.value)}
-                    className="w-full px-4 py-3 rounded-md bg-[#F7F8FA] border border-[#E5E9F0] text-sm text-[#202938] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D] transition-all"
-                  >
-                    <option value="Pre-Launch Residential Projects">Pre-Launch Residential Projects</option>
-                    <option value="Newly Launched Residential Projects">Newly Launched Residential Projects</option>
-                    <option value="Upcoming Projects Advisory">Upcoming Residential Projects Advisory</option>
-                    <option value="General Enquiry">General Consultation Enquiry</option>
-                  </select>
+                  {/* Row 2, Col 2: Area of Interest */}
+                  <div>
+                    <label htmlFor="interestedIn" className="block text-xs font-bold text-[#102B50] uppercase tracking-wider mb-1.5">
+                      Area of Interest <span className="text-rose-500">*</span>
+                    </label>
+                    <select
+                      id="interestedIn"
+                      value={interestedIn}
+                      onChange={(e) => setInterestedIn(e.target.value)}
+                      className="w-full h-11 px-4 rounded-md bg-[#F7F8FA] border border-[#E5E9F0] text-sm text-[#202938] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D] transition-all cursor-pointer"
+                    >
+                      <option value="Pre-Launch Residential Projects">Pre-Launch Residential Projects</option>
+                      <option value="Newly Launched Residential Projects">Newly Launched Residential Projects</option>
+                      <option value="Upcoming Projects Advisory">Upcoming Residential Projects Advisory</option>
+                      <option value="General Enquiry">General Consultation Enquiry</option>
+                    </select>
+                  </div>
                 </div>
 
                 {/* Message */}

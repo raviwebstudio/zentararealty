@@ -89,10 +89,10 @@ export default function NewLaunchesSection() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#102B50] font-serif-heading tracking-tight leading-tight mb-4">
               Newly Launched Residential Projects
             </h2>
-            <p className="text-base sm:text-lg text-[#55647A] leading-relaxed">
+            {/* <p className="text-base sm:text-lg text-[#55647A] leading-relaxed">
               Discover newly launched residential communities in Gurugram featuring contemporary architecture,
               expansive layouts, and premier lifestyle infrastructure.
-            </p>
+            </p> */}
           </div>
 
           {/* Interactive Filter Pills */}
@@ -106,11 +106,10 @@ export default function NewLaunchesSection() {
                 key={cat.id}
                 type="button"
                 onClick={() => setActiveFilter(cat.id)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${
-                  activeFilter === cat.id
+                className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${activeFilter === cat.id
                     ? "bg-[#102B50] text-white shadow-sm"
                     : "bg-[#F7F8FA] text-[#55647A] hover:bg-[#E5E9F0]"
-                }`}
+                  }`}
               >
                 {cat.label}
               </button>
@@ -136,7 +135,7 @@ export default function NewLaunchesSection() {
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                  
+
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
                     <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-emerald-900/90 text-emerald-300 border border-emerald-400/40 backdrop-blur-sm">
                       {item.status}

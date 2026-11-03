@@ -88,10 +88,10 @@ export default function PreLaunchSection() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#102B50] font-serif-heading tracking-tight leading-tight mb-4">
             Pre-Launch Residential Projects
           </h2>
-          <p className="text-base sm:text-lg text-[#55647A] leading-relaxed">
+          {/* <p className="text-base sm:text-lg text-[#55647A] leading-relaxed">
             Gain verified market intelligence and structured advisory on pre-launch residential developments
             across Gurugram&apos;s most sought-after development corridors before broad public release.
-          </p>
+          </p> */}
         </div>
 
         {/* Project Category Grid with Premium Imagery */}
@@ -112,7 +112,7 @@ export default function PreLaunchSection() {
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                  
+
                   {/* Floating Badges */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
                     <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded bg-[#102B50]/90 text-[#C5A46D] border border-[#C5A46D]/40 backdrop-blur-sm">

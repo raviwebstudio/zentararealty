@@ -26,12 +26,12 @@ export default function AboutSection() {
               Gurugram, Haryana.
             </p>
 
-            <p className="text-sm sm:text-base text-[#55647A] leading-relaxed">
+            {/* <p className="text-sm sm:text-base text-[#55647A] leading-relaxed">
               In a crowded market saturated with conflicting listings, second-hand resale houses, and commercial distractions,
               Zentara Realty stands apart by concentrating exclusively on primary residential developments. We work with
               homebuyers and discerning investors to evaluate upcoming, pre-launch, and newly launched residential communities
               across the city&apos;s most promising growth axes.
-            </p>
+            </p> */}
 
             {/* Principles Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
