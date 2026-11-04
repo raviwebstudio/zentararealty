@@ -19,6 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/images/new-gurgaon.jpg`,
         `${baseUrl}/images/newlaunch-architecture.jpg`,
         `${baseUrl}/images/why-choose-consultation.jpg`,
+        `${baseUrl}/og-image.png`,
+        `${baseUrl}/logo.png`,
       ],
     },
     {

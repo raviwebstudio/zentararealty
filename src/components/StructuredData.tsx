@@ -12,8 +12,8 @@ export default function StructuredData() {
     "alternateName": ["Zentara Realty Gurugram", "Zentara Realty Residential Consultancy"],
     "legalName": "Zentara Realty",
     "url": baseUrl,
-    "logo": `${baseUrl}/logo.svg`,
-    "image": `${baseUrl}/og-image.svg`,
+    "logo": `${baseUrl}/logo.png`,
+    "image": `${baseUrl}/og-image.png`,
     "telephone": "+91 7303437659",
     "email": "zentararealty@gmail.com",
     "description":
@@ -92,7 +92,7 @@ export default function StructuredData() {
     "@id": `${baseUrl}/#organization`,
     "name": "Zentara Realty",
     "url": baseUrl,
-    "logo": `${baseUrl}/logo.svg`,
+    "logo": `${baseUrl}/logo.png`,
     "contactPoint": [
       {
         "@type": "ContactPoint",
@@ -126,9 +126,9 @@ export default function StructuredData() {
     "@type": "WebPage",
     "@id": `${baseUrl}/#webpage`,
     "url": baseUrl,
-    "name": "Zentara Realty | New Residential Projects in Gurgaon",
+    "name": "Zentara Realty | New & Upcoming Residential Projects in Gurgaon",
     "description":
-      "Discover pre-launch and newly launched residential projects in Gurgaon with Zentara Realty. Explore new residential developments and opportunities in Gurugram.",
+      "Explore pre-launch and newly launched residential projects in Gurgaon with Zentara Realty. Discover new developments and enquire about residential opportunities.",
     "isPartOf": {
       "@id": `${baseUrl}/#website`,
     },

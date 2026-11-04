@@ -12,9 +12,9 @@ import CookieConsent from "@/components/CookieConsent";
 import StructuredData from "@/components/StructuredData";
 
 export const metadata: Metadata = {
-  title: "Zentara Realty | New Residential Projects in Gurgaon",
+  title: "Zentara Realty | New & Upcoming Residential Projects in Gurgaon",
   description:
-    "Discover pre-launch and newly launched residential projects in Gurgaon with Zentara Realty. Explore new residential developments and opportunities in Gurugram.",
+    "Explore pre-launch and newly launched residential projects in Gurgaon with Zentara Realty. Discover new developments and enquire about residential opportunities.",
   keywords: [
     "New Residential Projects in Gurgaon",
     "Pre Launch Projects in Gurgaon",
@@ -35,29 +35,51 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://zentararealty.property",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/favicon.png",
+  },
   openGraph: {
-    title: "Zentara Realty | New Residential Projects in Gurgaon",
+    title: "Zentara Realty | New & Upcoming Residential Projects in Gurgaon",
     description:
-      "Discover pre-launch and newly launched residential projects in Gurgaon with Zentara Realty. Explore new residential developments and opportunities in Gurugram.",
+      "Explore pre-launch and newly launched residential projects in Gurgaon with Zentara Realty. Discover new developments and enquire about residential opportunities.",
     url: "https://zentararealty.property",
     siteName: "Zentara Realty",
     locale: "en_IN",
     type: "website",
     images: [
       {
-        url: "/og-image.svg",
+        url: "https://zentararealty.property/og-image.png",
+        secureUrl: "https://zentararealty.property/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Zentara Realty — Residential Real Estate Consultancy, Gurugram",
+        alt: "Zentara Realty — Official Branding & New Residential Projects in Gurgaon",
+        type: "image/png",
+      },
+      {
+        url: "https://zentararealty.property/og-image.jpg",
+        secureUrl: "https://zentararealty.property/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Zentara Realty — Official Branding & New Residential Projects in Gurgaon",
+        type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zentara Realty | New Residential Projects in Gurgaon",
+    title: "Zentara Realty | New & Upcoming Residential Projects in Gurgaon",
     description:
-      "Discover pre-launch and newly launched residential projects in Gurgaon with Zentara Realty. Explore new residential developments and opportunities in Gurugram.",
-    images: ["/og-image.svg"],
+      "Explore pre-launch and newly launched residential projects in Gurgaon with Zentara Realty. Discover new developments and enquire about residential opportunities.",
+    images: ["https://zentararealty.property/og-image.png"],
+    creator: "@ZentaraRealty",
   },
   robots: {
     index: true,
