@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Privacy Policy for Zentara Realty detailing our personal data handling, consent management, and cookie practices in accordance with the Digital Personal Data Protection Act, 2023.",
   alternates: {
-    canonical: "https://zentararealty.property/privacy-policy",
+    canonical: "https://www.zentararealty.property/privacy-policy",
   },
   robots: {
     index: true,

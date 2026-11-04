@@ -23,7 +23,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/"],
       },
     ],
-    sitemap: "https://zentararealty.property/sitemap.xml",
-    host: "https://zentararealty.property",
+    sitemap: "https://www.zentararealty.property/sitemap.xml",
+    host: "https://www.zentararealty.property",
   };
 }

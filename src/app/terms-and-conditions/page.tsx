@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Terms and Conditions governing advisory services, content usage, and residential real estate consultation with Zentara Realty, Gurugram, Haryana.",
   alternates: {
-    canonical: "https://zentararealty.property/terms-and-conditions",
+    canonical: "https://www.zentararealty.property/terms-and-conditions",
   },
   robots: {
     index: true,

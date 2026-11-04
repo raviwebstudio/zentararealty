@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://zentararealty.property";
+  const baseUrl = "https://www.zentararealty.property";
   const lastModified = new Date("2026-11-03T00:00:00.000Z");
 
   return [

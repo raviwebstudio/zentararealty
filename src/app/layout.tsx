@@ -9,7 +9,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://zentararealty.property"),
+  metadataBase: new URL("https://www.zentararealty.property"),
   title: {
     default: "Zentara Realty | New & Upcoming Residential Projects in Gurgaon",
     template: "%s | Zentara Realty",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "Southern Peripheral Road Residences",
     "New Gurgaon Residential Projects",
   ],
-  authors: [{ name: "Zentara Realty", url: "https://zentararealty.property" }],
+  authors: [{ name: "Zentara Realty", url: "https://www.zentararealty.property" }],
   creator: "Zentara Realty",
   publisher: "Zentara Realty",
   icons: {
@@ -44,28 +44,28 @@ export const metadata: Metadata = {
     shortcut: "/favicon.png",
   },
   alternates: {
-    canonical: "https://zentararealty.property",
+    canonical: "https://www.zentararealty.property",
   },
   openGraph: {
     title: "Zentara Realty | New & Upcoming Residential Projects in Gurgaon",
     description:
       "Explore pre-launch and newly launched residential projects in Gurgaon with Zentara Realty. Discover new developments and enquire about residential opportunities.",
-    url: "https://zentararealty.property",
+    url: "https://www.zentararealty.property",
     siteName: "Zentara Realty",
     locale: "en_IN",
     type: "website",
     images: [
       {
-        url: "https://zentararealty.property/og-image.png",
-        secureUrl: "https://zentararealty.property/og-image.png",
+        url: "https://www.zentararealty.property/og-image.png",
+        secureUrl: "https://www.zentararealty.property/og-image.png",
         width: 1200,
         height: 630,
         alt: "Zentara Realty — Official Branding & New Residential Projects in Gurgaon",
         type: "image/png",
       },
       {
-        url: "https://zentararealty.property/og-image.jpg",
-        secureUrl: "https://zentararealty.property/og-image.jpg",
+        url: "https://www.zentararealty.property/og-image.jpg",
+        secureUrl: "https://www.zentararealty.property/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Zentara Realty — Official Branding & New Residential Projects in Gurgaon",
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     title: "Zentara Realty | New & Upcoming Residential Projects in Gurgaon",
     description:
       "Explore pre-launch and newly launched residential projects in Gurgaon with Zentara Realty. Discover new developments and enquire about residential opportunities.",
-    images: ["https://zentararealty.property/og-image.png"],
+    images: ["https://www.zentararealty.property/og-image.png"],
     creator: "@ZentaraRealty",
   },
   robots: {

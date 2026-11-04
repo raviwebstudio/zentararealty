@@ -1,7 +1,7 @@
 import { FAQS } from "@/data/faqs";
 
 export default function StructuredData() {
-  const baseUrl = "https://zentararealty.property";
+  const baseUrl = "https://www.zentararealty.property";
 
   // 1. Primary RealEstateAgent / LocalBusiness Schema
   const realEstateAgentSchema = {

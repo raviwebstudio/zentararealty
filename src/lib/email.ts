@@ -135,7 +135,7 @@ export function generateEnquiryHtml(data: EmailEnquiryData): string {
       <div><strong>Zentara Realty</strong> — Gurugram, Haryana, India</div>
       <div class="footer-divider"></div>
       <div>Exclusively Focused on Pre-Launch &amp; Newly Launched Residential Developments</div>
-      <div style="margin-top: 6px; color: #64748B;">Official Website: <a href="https://zentararealty.property" style="color: #C5A46D; text-decoration: none;">https://zentararealty.property</a></div>
+      <div style="margin-top: 6px; color: #64748B;">Official Website: <a href="https://www.zentararealty.property" style="color: #C5A46D; text-decoration: none;">https://www.zentararealty.property</a></div>
     </div>
   </div>
 </body>

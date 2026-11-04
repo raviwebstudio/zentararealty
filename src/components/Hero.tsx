@@ -17,10 +17,10 @@ export default function Hero() {
           {/* Left Column: Headline and CTAs */}
           <div className="lg:col-span-7 text-left">
             {/* Top Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#102B50]/90 border border-[#C5A46D]/40 text-[#C5A46D] text-xs font-semibold uppercase tracking-widest mb-6 shadow-sm">
+            {/* <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#102B50]/90 border border-[#C5A46D]/40 text-[#C5A46D] text-xs font-semibold uppercase tracking-widest mb-6 shadow-sm">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Gurgaon Residential Real Estate Consultancy</span>
-            </div>
+            </div> */}
 
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6 font-serif-heading leading-[1.12]">

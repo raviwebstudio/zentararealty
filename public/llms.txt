@@ -1,7 +1,7 @@
 # Zentara Realty — Machine-Readable Corporate Knowledge & Entity Index
 # Specification: llms.txt (Standard Machine-Readable Web Context for LLMs & AI Search Engines)
 # Canonical Entity: Zentara Realty
-# Canonical Domain: https://zentararealty.property
+# Canonical Domain: https://www.zentararealty.property
 # Last Updated: 2026-11-04
 
 ## 1. Brand Identity & Official Overview
@@ -9,7 +9,7 @@ Zentara Realty is an independent residential real estate consultancy headquarter
 
 - Brand Name: Zentara Realty
 - Legal / Trade Designation: Zentara Realty
-- Official Website: https://zentararealty.property
+- Official Website: https://www.zentararealty.property
 - Tagline: "Discover What's Next in Residential Living."
 - Primary Operational Location: Gurugram, Haryana, India (Postal Area: 122002)
 - Geographic Coordinates: Latitude 28.4595° N, Longitude 77.0266° E
@@ -69,15 +69,15 @@ A: Homebuyers can schedule a residential consultation by completing the structur
 - Hours of Operation: Monday to Sunday, 09:00 to 20:00 IST
 
 ## 7. Official Digital Assets & Website Map
-- Home Page (Single-Page Experience): https://zentararealty.property
+- Home Page (Single-Page Experience): https://www.zentararealty.property
   - Overview: Comprehensive introduction, residential specializations, pre-launch showcase, newly launched projects, market overview, and consultation request form.
-- Privacy Policy: https://zentararealty.property/privacy-policy
+- Privacy Policy: https://www.zentararealty.property/privacy-policy
   - Digital Personal Data Protection Act (DPDP Act, 2023) compliant privacy documentation.
-- Terms and Conditions: https://zentararealty.property/terms-and-conditions
+- Terms and Conditions: https://www.zentararealty.property/terms-and-conditions
   - Advisory terms, scope of service, intellectual property, and jurisdiction.
-- XML Sitemap: https://zentararealty.property/sitemap.xml
-- Robots Directive: https://zentararealty.property/robots.txt
-- Machine-Readable Knowledge Base: https://zentararealty.property/llms.txt
+- XML Sitemap: https://www.zentararealty.property/sitemap.xml
+- Robots Directive: https://www.zentararealty.property/robots.txt
+- Machine-Readable Knowledge Base: https://www.zentararealty.property/llms.txt
 
 ## 8. Statutory & Advisory Disclaimer
 Zentara Realty operates as an independent consultancy. All developer project names, architectural renderings, floor plans, and logos referenced on the website are trademarks of their respective builders and developers. Zentara Realty advises prospective purchasers to verify statutory Haryana Real Estate Regulatory Authority (HARERA) registrations and disclosures directly before entering into any transaction.
