@@ -7,7 +7,7 @@ import type { CookiePreferences } from "./CookieConsent";
 
 const STORAGE_KEY = "zr_cookie_consent_v1";
 export const GA_MEASUREMENT_ID =
-  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-DZPGFHCJNJ";
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-JRGY9GSREV";
 
 // Helper to remove Google Analytics cookies if consent is revoked
 function clearAnalyticsCookies() {
