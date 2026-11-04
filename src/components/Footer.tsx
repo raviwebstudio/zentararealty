@@ -42,7 +42,7 @@ export default function Footer() {
 
             <div className="pt-2 text-xs text-gray-400 space-y-1">
               <div>
-                <span className="text-[#C5A46D] font-medium">Domain:</span> https://zentararealty.property
+                <span className="text-[#C5A46D] font-medium">Domain:</span> https://www.zentararealty.property
               </div>
               <div>
                 <span className="text-[#C5A46D] font-medium">Headquarters:</span> Gurugram, Haryana, India

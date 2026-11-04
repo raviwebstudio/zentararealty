@@ -9,8 +9,36 @@ const STORAGE_KEY = "zr_cookie_consent_v1";
 export const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-DZPGFHCJNJ";
 
+// Helper to remove Google Analytics cookies if consent is revoked
+function clearAnalyticsCookies() {
+  if (typeof document === "undefined" || typeof window === "undefined") return;
+  try {
+    const cookies = document.cookie.split(";");
+    const hostname = window.location.hostname;
+    const parts = hostname.split(".");
+    const rootDomain =
+      parts.length > 2 ? `.${parts.slice(-2).join(".")}` : hostname;
+
+    cookies.forEach((cookie) => {
+      const name = cookie.split("=")[0].trim();
+      if (
+        name.startsWith("_ga") ||
+        name.startsWith("_gid") ||
+        name.startsWith("_gat")
+      ) {
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${hostname};`;
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${rootDomain};`;
+      }
+    });
+  } catch {
+    // Ignore cookie clearance errors
+  }
+}
+
 export default function GoogleAnalytics() {
   const [hasAnalyticsConsent, setHasAnalyticsConsent] = useState(false);
+  const [hasMarketingConsent, setHasMarketingConsent] = useState(false);
   const pathname = usePathname();
   const isInitialLoad = useRef(true);
   const initializedRef = useRef(false);
@@ -22,12 +50,28 @@ export default function GoogleAnalytics() {
         const stored = localStorage.getItem(STORAGE_KEY);
         if (stored) {
           const parsed = JSON.parse(stored) as CookiePreferences;
-          setHasAnalyticsConsent(Boolean(parsed.analytics));
+          const analyticsGranted = Boolean(parsed.analytics);
+          const marketingGranted = Boolean(parsed.marketing);
+
+          setHasAnalyticsConsent(analyticsGranted);
+          setHasMarketingConsent(marketingGranted);
+
+          // Update consent state dynamically in dataLayer
+          if (typeof window !== "undefined" && window.gtag) {
+            window.gtag("consent", "update", {
+              analytics_storage: analyticsGranted ? "granted" : "denied",
+              ad_storage: marketingGranted ? "granted" : "denied",
+              ad_user_data: marketingGranted ? "granted" : "denied",
+              ad_personalization: marketingGranted ? "granted" : "denied",
+            });
+          }
         } else {
           setHasAnalyticsConsent(false);
+          setHasMarketingConsent(false);
         }
       } catch {
         setHasAnalyticsConsent(false);
+        setHasMarketingConsent(false);
       }
     };
 
@@ -37,14 +81,27 @@ export default function GoogleAnalytics() {
     const handleConsentUpdate = (event: Event) => {
       const customEvent = event as CustomEvent<CookiePreferences>;
       if (customEvent.detail) {
-        const consented = Boolean(customEvent.detail.analytics);
-        setHasAnalyticsConsent(consented);
+        const analyticsGranted = Boolean(customEvent.detail.analytics);
+        const marketingGranted = Boolean(customEvent.detail.marketing);
 
-        // Update Google Consent Mode state dynamically
+        setHasAnalyticsConsent(analyticsGranted);
+        setHasMarketingConsent(marketingGranted);
+
+        // Update Google Consent Mode v2 state dynamically
+        // Maps Analytics -> analytics_storage
+        // Maps Marketing -> ad_storage, ad_user_data, ad_personalization
         if (typeof window !== "undefined" && window.gtag) {
           window.gtag("consent", "update", {
-            analytics_storage: consented ? "granted" : "denied",
+            analytics_storage: analyticsGranted ? "granted" : "denied",
+            ad_storage: marketingGranted ? "granted" : "denied",
+            ad_user_data: marketingGranted ? "granted" : "denied",
+            ad_personalization: marketingGranted ? "granted" : "denied",
           });
+        }
+
+        // If analytics consent was revoked, remove existing analytics tracking cookies
+        if (!analyticsGranted) {
+          clearAnalyticsCookies();
         }
       }
     };
@@ -75,7 +132,7 @@ export default function GoogleAnalytics() {
     }
   }, [pathname, hasAnalyticsConsent]);
 
-  // If user has not granted consent, DO NOT inject the external Google Tag script
+  // Basic Consent Mode: do not inject external Google Tag script until analytics consent is granted
   if (!hasAnalyticsConsent) {
     return null;
   }
@@ -88,9 +145,12 @@ export default function GoogleAnalytics() {
       onLoad={() => {
         initializedRef.current = true;
         if (typeof window !== "undefined" && window.gtag) {
-          // Update Consent Mode
+          // Update Google Consent Mode v2 with active preferences
           window.gtag("consent", "update", {
-            analytics_storage: "granted",
+            analytics_storage: hasAnalyticsConsent ? "granted" : "denied",
+            ad_storage: hasMarketingConsent ? "granted" : "denied",
+            ad_user_data: hasMarketingConsent ? "granted" : "denied",
+            ad_personalization: hasMarketingConsent ? "granted" : "denied",
           });
           window.gtag("js", new Date());
           // Configure GA4 with send_page_view enabled exactly once
@@ -99,7 +159,7 @@ export default function GoogleAnalytics() {
             page_path: pathname,
             anonymize_ip: true,
             allow_google_signals: false,
-            allow_ad_personalization_signals: false,
+            allow_ad_personalization_signals: hasMarketingConsent,
           });
         }
       }}

@@ -102,19 +102,39 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
-        {/* Google Consent Mode v2 Default Configuration (Deny analytics by default) */}
+        {/* Google Consent Mode v2 Default Configuration (Deny analytics & marketing by default, or restore stored consent) */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
-              gtag('consent', 'default', {
-                'analytics_storage': 'denied',
-                'ad_storage': 'denied',
-                'ad_user_data': 'denied',
-                'ad_personalization': 'denied',
-                'wait_for_update': 500
-              });
+              try {
+                var storedConsent = localStorage.getItem('zr_cookie_consent_v1');
+                if (storedConsent) {
+                  var parsed = JSON.parse(storedConsent);
+                  gtag('consent', 'default', {
+                    'analytics_storage': parsed.analytics ? 'granted' : 'denied',
+                    'ad_storage': parsed.marketing ? 'granted' : 'denied',
+                    'ad_user_data': parsed.marketing ? 'granted' : 'denied',
+                    'ad_personalization': parsed.marketing ? 'granted' : 'denied'
+                  });
+                } else {
+                  gtag('consent', 'default', {
+                    'analytics_storage': 'denied',
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'wait_for_update': 500
+                  });
+                }
+              } catch (e) {
+                gtag('consent', 'default', {
+                  'analytics_storage': 'denied',
+                  'ad_storage': 'denied',
+                  'ad_user_data': 'denied',
+                  'ad_personalization': 'denied'
+                });
+              }
             `,
           }}
         />

@@ -79,7 +79,7 @@ export default function PrivacyPolicyPage() {
               Zentara Realty (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) operates as an independent residential real estate consultancy based in Gurugram, Haryana, India. We are committed to safeguarding the privacy and personal data of our website visitors, prospective homebuyers, and clients in compliance with the Digital Personal Data Protection Act, 2023 and associated data protection regulations of India.
             </p>
             <p>
-              This Privacy Policy applies to personal data collected through our official website (<strong>https://zentararealty.property</strong>), direct consultation forms, telephone communications, and electronic messaging.
+              This Privacy Policy applies to personal data collected through our official website (<strong>https://www.zentararealty.property</strong>), direct consultation forms, telephone communications, and electronic messaging.
             </p>
           </section>
 
@@ -207,7 +207,7 @@ export default function PrivacyPolicyPage() {
               <div><strong>Operational Location:</strong> Gurugram, Haryana, India</div>
               <div><strong>Official Email:</strong> zentararealty@gmail.com</div>
               <div><strong>Telephone / WhatsApp:</strong> +91 7303437659</div>
-              <div><strong>Website:</strong> https://zentararealty.property</div>
+              <div><strong>Website:</strong> https://www.zentararealty.property</div>
             </div>
           </section>
         </div>

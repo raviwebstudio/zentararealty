@@ -86,7 +86,7 @@ export default function CookieConsent() {
       essential: true, // Always true
       analytics,
       marketing,
-      timestamp: "2026-11-03T00:00:00.000Z",
+      timestamp: new Date().toISOString(),
     };
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
