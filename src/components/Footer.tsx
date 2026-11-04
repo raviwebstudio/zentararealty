@@ -24,7 +24,7 @@ export default function Footer() {
           <div className="lg:col-span-5 space-y-4">
             <Link href="/" className="inline-block">
               <Image
-                src="/logo-white.png"
+                src="/zentara-logo-white.png"
                 alt="Zentara Realty — Official Logo"
                 width={190}
                 height={129}

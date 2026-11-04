@@ -24,7 +24,7 @@ export default function TermsAndConditionsPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/logo-white.png"
+              src="/zentara-logo-white.png"
               alt="Zentara Realty Logo"
               width={160}
               height={109}

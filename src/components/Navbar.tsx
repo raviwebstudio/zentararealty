@@ -83,7 +83,7 @@ export default function Navbar() {
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group focus:ring-1 focus:ring-[#C5A46D] rounded">
             <Image
-              src="/logo-white.png"
+              src="/zentara-logo-white.png"
               alt="Zentara Realty — Official Logo"
               width={160}
               height={109}
