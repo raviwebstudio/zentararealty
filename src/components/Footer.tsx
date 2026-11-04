@@ -113,8 +113,12 @@ export default function Footer() {
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#C5A46D] shrink-0" />
-                <a href="mailto:zentararealty@gmail.com" className="hover:text-white transition-colors break-all">
+                <Mail className="w-4 h-4 text-[#C5A46D] shrink-0" aria-hidden="true" />
+                <a
+                  href="mailto:zentararealty@gmail.com"
+                  aria-label="Send email to zentararealty@gmail.com"
+                  className="hover:text-white transition-colors break-all"
+                >
                   zentararealty@gmail.com
                 </a>
               </div>

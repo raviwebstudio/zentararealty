@@ -45,9 +45,10 @@ export default function Navbar() {
           <div className="flex items-center gap-4 sm:gap-6 text-[11px] sm:text-xs">
             <a
               href="mailto:zentararealty@gmail.com"
+              aria-label="Send an email enquiry to Zentara Realty at zentararealty@gmail.com"
               className="hover:text-[#C5A46D] transition-colors flex items-center gap-1.5"
             >
-              <Mail className="w-3 h-3 text-[#C5A46D]" />
+              <Mail className="w-3 h-3 text-[#C5A46D]" aria-hidden="true" />
               <span className="hidden xs:inline">zentararealty@gmail.com</span>
             </a>
             <a

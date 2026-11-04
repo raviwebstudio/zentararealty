@@ -296,6 +296,7 @@ export default function ContactSection() {
                 {/* Email Address */}
                 <a
                   href="mailto:zentararealty@gmail.com"
+                  aria-label="Send an email enquiry to zentararealty@gmail.com"
                   className="flex items-start gap-4 p-4 rounded-lg bg-[#F7F8FA] hover:bg-[#102B50]/5 border border-[#E5E9F0] transition-colors group"
                 >
                   <div className="p-2.5 rounded-md bg-[#102B50] text-[#C5A46D] shrink-0">

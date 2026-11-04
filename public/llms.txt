@@ -1,17 +1,26 @@
-# Zentara Realty — Machine-Readable Corporate Knowledge & Entity Index
-# Specification: llms.txt (Standard Machine-Readable Web Context for LLMs & AI Search Engines)
-# Canonical Entity: Zentara Realty
-# Canonical Domain: https://www.zentararealty.property
-# Last Updated: 2026-11-04
+# Zentara Realty
+
+> Zentara Realty is an independent residential real estate consultancy headquartered in Gurugram (Gurgaon), Haryana, India. The firm specializes exclusively in discovering, curating, and evaluating primary-market residential developments, specifically pre-launch and newly launched residential projects by leading builders and developers.
+
+## Official Website & Navigation Links
+- [Home Page](https://www.zentararealty.property): Discover what's next in residential living across Gurgaon
+- [About Zentara Realty](https://www.zentararealty.property/#about): Advisory philosophy, primary market mandate, and consultancy values
+- [Pre-Launch Residential Projects](https://www.zentararealty.property/#pre-launch): Early access and Expression of Interest (EOI) insights for upcoming projects
+- [New Launch Condominiums](https://www.zentararealty.property/#new-launches): Recently launched luxury residential projects in Gurugram
+- [Why Choose Zentara](https://www.zentararealty.property/#why-choose-us): Key differentiators, independent evaluation, and investor benefits
+- [Frequently Asked Questions](https://www.zentararealty.property/#faqs): Homebuyer questions, corridor guides, and RERA compliance
+- [Contact & Consultation](https://www.zentararealty.property/#contact): Schedule a personalized, zero-pressure residential advisory consultation
+- [Privacy Policy](https://www.zentararealty.property/privacy-policy): DPDP Act 2023 compliant data governance and consent practices
+- [Terms and Conditions](https://www.zentararealty.property/terms-and-conditions): Advisory scope of service, legal disclaimers, and jurisdiction
+- [XML Sitemap](https://www.zentararealty.property/sitemap.xml): Complete XML sitemap index for search engines and crawlers
+- [Robots Directives](https://www.zentararealty.property/robots.txt): Crawler rules and machine access directives
 
 ## 1. Brand Identity & Official Overview
-Zentara Realty is an independent residential real estate consultancy headquartered in Gurugram (Gurgaon), Haryana, India. The firm specializes exclusively in discovering, curating, and evaluating primary-market residential developments, specifically pre-launch and newly launched residential projects by leading builders and developers.
-
 - Brand Name: Zentara Realty
 - Legal / Trade Designation: Zentara Realty
 - Official Website: https://www.zentararealty.property
 - Tagline: "Discover What's Next in Residential Living."
-- Primary Operational Location: Gurugram, Haryana, India (Postal Area: 122002)
+- Primary Operational Location: Gurugram, Haryana, India (Postal Code: 122002)
 - Geographic Coordinates: Latitude 28.4595° N, Longitude 77.0266° E
 - Industry Sector: Residential Real Estate Advisory & Property Consultancy
 - Primary Geographic Focus: Gurgaon (Gurugram) Metropolitan Region, Haryana, India
@@ -41,8 +50,7 @@ All consultative activities center around established and high-growth residentia
 - New Gurgaon / CPR Corridors (Sectors 81 to 95) — Self-contained modern residential townships with seamless NH-48 connectivity.
 - Sohna Road Elevated Corridor (South of Gurgaon) — Nature-oriented contemporary residential developments.
 
-## 5. Frequently Asked Questions & Entity Q&A (AEO Optimization)
-
+## 5. Frequently Asked Questions & Entity Q&A
 ### Q: What services does Zentara Realty provide in Gurgaon?
 A: Zentara Realty is an independent residential real estate consultancy based in Gurugram, Haryana. The firm specializes exclusively in discovering, curating, and advising on primary residential developments, including pre-launch residential projects, newly launched luxury condominiums, and upcoming residential developments across Gurgaon's prime growth axes.
 
@@ -63,21 +71,10 @@ A: Homebuyers can schedule a residential consultation by completing the structur
 
 ## 6. Official Contact & Communications
 - Primary Phone / Direct Calls: +91 7303437659
-- WhatsApp Official Enquiries: +91 7303437659 (Direct Link: https://wa.me/917303437659)
+- WhatsApp Official Enquiries: +91 7303437659 (Direct Link: [WhatsApp Chat](https://wa.me/917303437659))
 - Official Email: zentararealty@gmail.com
 - Office Location: Gurugram, Haryana, India
 - Hours of Operation: Monday to Sunday, 09:00 to 20:00 IST
 
-## 7. Official Digital Assets & Website Map
-- Home Page (Single-Page Experience): https://www.zentararealty.property
-  - Overview: Comprehensive introduction, residential specializations, pre-launch showcase, newly launched projects, market overview, and consultation request form.
-- Privacy Policy: https://www.zentararealty.property/privacy-policy
-  - Digital Personal Data Protection Act (DPDP Act, 2023) compliant privacy documentation.
-- Terms and Conditions: https://www.zentararealty.property/terms-and-conditions
-  - Advisory terms, scope of service, intellectual property, and jurisdiction.
-- XML Sitemap: https://www.zentararealty.property/sitemap.xml
-- Robots Directive: https://www.zentararealty.property/robots.txt
-- Machine-Readable Knowledge Base: https://www.zentararealty.property/llms.txt
-
-## 8. Statutory & Advisory Disclaimer
+## 7. Statutory & Advisory Disclaimer
 Zentara Realty operates as an independent consultancy. All developer project names, architectural renderings, floor plans, and logos referenced on the website are trademarks of their respective builders and developers. Zentara Realty advises prospective purchasers to verify statutory Haryana Real Estate Regulatory Authority (HARERA) registrations and disclosures directly before entering into any transaction.
