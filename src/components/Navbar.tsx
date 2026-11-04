@@ -82,12 +82,12 @@ export default function Navbar() {
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group focus:ring-1 focus:ring-[#C5A46D] rounded">
             <Image
-              src="/logo-white.svg"
-              alt="Zentara Realty Logo"
-              width={210}
-              height={40}
+              src="/logo-white.png"
+              alt="Zentara Realty — Official Logo"
+              width={160}
+              height={109}
               priority
-              className="h-9 md:h-10 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+              className="h-10 md:h-11 w-auto object-contain transition-transform group-hover:scale-[1.02]"
             />
           </Link>
 

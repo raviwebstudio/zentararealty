@@ -24,11 +24,11 @@ export default function Footer() {
           <div className="lg:col-span-5 space-y-4">
             <Link href="/" className="inline-block">
               <Image
-                src="/logo-white.svg"
-                alt="Zentara Realty Logo"
-                width={230}
-                height={45}
-                className="h-10 w-auto object-contain"
+                src="/logo-white.png"
+                alt="Zentara Realty — Official Logo"
+                width={190}
+                height={129}
+                className="h-11 md:h-12 w-auto object-contain"
               />
             </Link>
             <p className="font-serif-heading text-lg text-[#C5A46D] italic">

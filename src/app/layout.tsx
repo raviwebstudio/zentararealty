@@ -135,14 +135,29 @@ export default function RootLayout({
                   'ad_personalization': 'denied'
                 });
               }
+              gtag('js', new Date());
             `,
           }}
+        />
+        {/* Google Tag Manager (GTM-KTP88V76) */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-KTP88V76"
         />
       </head>
       <body
         className="min-h-screen bg-[#F7F8FA] text-[#202938] antialiased selection:bg-[#C5A46D]/20 selection:text-[#102B50]"
         suppressHydrationWarning
       >
+        {/* Google Tag Manager (noscript fallback) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-KTP88V76"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         {/* Consent-controlled GA4 tag loader */}
         <GoogleAnalytics />
         {children}

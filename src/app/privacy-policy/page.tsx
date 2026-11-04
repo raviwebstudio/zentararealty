@@ -24,11 +24,11 @@ export default function PrivacyPolicyPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/logo-white.svg"
+              src="/logo-white.png"
               alt="Zentara Realty Logo"
-              width={200}
-              height={38}
-              className="h-8 md:h-9 w-auto object-contain"
+              width={160}
+              height={109}
+              className="h-9 md:h-10 w-auto object-contain"
             />
           </Link>
           <Link
