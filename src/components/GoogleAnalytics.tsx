@@ -36,7 +36,7 @@ function clearAnalyticsCookies() {
 /**
  * GoogleAnalytics Component (GTM-First Integration)
  *
- * Zentara Realty routes GA4 (G-JRGY9GSREV) exclusively through Google Tag Manager (GTM-KTP88V76)
+ * Zentara Realty routes GA4 (G-JRGY9GSREV) exclusively through Google Tag Manager (GTM-WRT49SWM)
  * to prevent duplicate GA4 script injections and duplicate page_view events.
  *
  * This component orchestrates:
