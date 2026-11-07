@@ -11,7 +11,6 @@ import {
   AlertCircle,
   Clock,
   Sparkles,
-  Info,
 } from "lucide-react";
 
 interface FieldErrors {
@@ -594,20 +593,6 @@ export default function ContactSection() {
                       <span>{fieldErrors.combinedConsent}</span>
                     </p>
                   )}
-
-                  {/* Combined Consent Explanation and Withdrawal Notice */}
-                  <div className="p-3.5 rounded bg-white border border-[#E5E9F0] text-[11px] text-[#55647A] leading-relaxed space-y-1.5">
-                    <div className="flex items-center gap-1.5 text-[#102B50] font-semibold text-xs">
-                      <Info className="w-3.5 h-3.5 text-[#C5A46D]" />
-                      Combined Consent &amp; Withdrawal Details
-                    </div>
-                    <p>
-                      This combined consent authorizes Zentara Realty to process your personal data and send you relevant residential updates via WhatsApp and Email. You may withdraw your consent at any time without penalty by replying &ldquo;STOP&rdquo; on WhatsApp or emailing <strong>zentararealty@gmail.com</strong>.
-                    </p>
-                    <p className="text-[10px] text-amber-800 bg-amber-50 p-1.5 rounded border border-amber-200">
-                      <strong>Legal Notice:</strong> Review this combined consent approach for applicable privacy and marketing laws (including Digital Personal Data Protection Act, 2023) prior to commercial production.
-                    </p>
-                  </div>
                 </div>
 
                 {/* Submit Button with Loading State */}
