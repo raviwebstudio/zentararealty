@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import {
   Phone,
-  MessageSquare,
   Mail,
   MapPin,
   Send,
@@ -44,11 +43,10 @@ export default function ContactSection() {
   // Anti-spam honeypot (bots fill this, humans never see it)
   const [honeypot, setHoneypot] = useState("");
 
-  // Bot speed detection timestamp (deferred to client mount to allow static prerender)
-  const [formStartTime, setFormStartTime] = useState<number>(0);
-
+  // Bot speed detection timestamp
+  const formStartTimeRef = useRef<number>(0);
   useEffect(() => {
-    setFormStartTime(Date.now());
+    formStartTimeRef.current = Date.now();
   }, []);
 
   // Form Validation & Interaction States
@@ -181,7 +179,7 @@ export default function ContactSection() {
           message,
           combinedConsent,
           honeypot,
-          formStartTime,
+          formStartTime: formStartTimeRef.current || Date.now(),
         }),
       });
 
@@ -251,7 +249,7 @@ export default function ContactSection() {
                 Direct Advisory Channels
               </h3>
               <p className="text-xs text-[#55647A] leading-relaxed">
-                Reach our residential advisory team directly via telephone, WhatsApp, or official email for priority assistance.
+                Reach our residential advisory team directly via telephone or official email for priority assistance.
               </p>
 
               <div className="space-y-4 pt-2">
@@ -269,27 +267,6 @@ export default function ContactSection() {
                     </div>
                     <div className="text-sm font-bold text-[#102B50] group-hover:text-[#C5A46D] transition-colors">
                       +91 7303437659
-                    </div>
-                  </div>
-                </a>
-
-                {/* WhatsApp Chat */}
-                <a
-                  href="https://wa.me/918796418138?text=Hello%20Zentara%20Realty,%20I%20would%20like%20to%20enquire%20about%20new%20residential%20projects%20in%20Gurgaon."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Chat on WhatsApp"
-                  className="flex items-start gap-4 p-4 rounded-lg bg-[#F7F8FA] hover:bg-emerald-50 border border-[#E5E9F0] hover:border-emerald-300 transition-colors group"
-                >
-                  <div className="p-2.5 rounded-md bg-[#25D366] text-white shrink-0">
-                    <MessageSquare className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-gray-400">
-                      Official WhatsApp
-                    </div>
-                    <div className="text-sm font-bold text-[#102B50] group-hover:text-emerald-700 transition-colors">
-                      Chat on WhatsApp
                     </div>
                   </div>
                 </a>

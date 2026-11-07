@@ -92,3 +92,21 @@
 .animate-fade-in {
   animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Subtle Architectural Ken Burns Slow Zoom-In Animation */
+@keyframes kenBurnsSlow {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-ken-burns {
+  animation: kenBurnsSlow 20s ease-in-out infinite alternate;
+  will-change: transform;
+}

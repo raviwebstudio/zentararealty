@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
-import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -166,7 +165,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </noscript>
         {/* Consent-controlled GA4 tag loader */}
         <GoogleAnalytics />
-        <FloatingWhatsApp />
         {children}
       </body>
     </html>

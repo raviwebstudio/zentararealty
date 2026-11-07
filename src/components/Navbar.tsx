@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, MapPin, Menu, X, ArrowUpRight, MessageSquare } from "lucide-react";
+import { Phone, Mail, MapPin, Menu, X, ArrowUpRight } from "lucide-react";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -57,16 +57,6 @@ export default function Navbar() {
             >
               <Phone className="w-3 h-3 text-[#C5A46D]" />
               +91 7303437659
-            </a>
-            <a
-              href="https://wa.me/918796418138?text=Hello%20Zentara%20Realty,%20I%20would%20like%20to%20enquire%20about%20new%20residential%20projects%20in%20Gurgaon."
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Chat on WhatsApp"
-              className="text-[#25D366] hover:text-[#2fe671] transition-colors flex items-center gap-1 font-medium"
-            >
-              <MessageSquare className="w-3 h-3" />
-              <span className="hidden sm:inline">WhatsApp</span>
             </a>
           </div>
         </div>
@@ -151,15 +141,6 @@ export default function Navbar() {
                 </a>
               ))}
               <div className="pt-3 border-t border-white/10 flex flex-col gap-2.5">
-                <a
-                  href="https://wa.me/918796418138?text=Hello%20Zentara%20Realty,%20I%20would%20like%20to%20enquire%20about%20new%20residential%20projects%20in%20Gurgaon."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-2.5 px-4 rounded bg-[#25D366]/20 text-[#25D366] border border-[#25D366]/40 text-xs font-semibold uppercase tracking-wider text-center flex items-center justify-center gap-2"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                  Chat on WhatsApp
-                </a>
                 <a
                   href="#contact"
                   onClick={() => setMobileMenuOpen(false)}

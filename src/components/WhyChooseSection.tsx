@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Shield, Sparkles, Compass, CheckCircle2, Award, Zap, HelpCircle } from "lucide-react";
+import { Shield, Sparkles, Compass, CheckCircle2, Award, Zap } from "lucide-react";
 
 export default function WhyChooseSection() {
   const pillars = [

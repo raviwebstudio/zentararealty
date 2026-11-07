@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, MapPin, MessageSquare, ArrowUp, Cookie } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowUp, Cookie } from "lucide-react";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -104,18 +104,6 @@ export default function Footer() {
                 <Phone className="w-4 h-4 text-[#C5A46D] shrink-0" />
                 <a href="tel:+917303437659" className="hover:text-white transition-colors">
                   +91 7303437659
-                </a>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <MessageSquare className="w-4 h-4 text-[#25D366] shrink-0" />
-                <a
-                  href="https://wa.me/918796418138?text=Hello%20Zentara%20Realty,%20I%20would%20like%20to%20enquire%20about%20new%20residential%20projects%20in%20Gurgaon."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Chat with Zentara Realty on WhatsApp"
-                  className="hover:text-[#25D366] transition-colors text-emerald-400 font-medium"
-                >
-                  WhatsApp
                 </a>
               </div>
               <div className="flex items-center gap-2.5">

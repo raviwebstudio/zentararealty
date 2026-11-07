@@ -271,7 +271,7 @@ export async function POST(request: NextRequest) {
 
     // Safe sanitized server log
     console.log(
-      `[ENQUIRY REGISTERED] Ref: ${referenceId} | Name: ${maskValue(fullName)} | Mobile: ${maskValue(tenDigitPhone)} | Email: ${maskValue(email)} | IP: ${maskValue(clientIp)}`
+      `[ENQUIRY REGISTERED] Ref: ${referenceId} | Subject: ${interestedIn} | Name: ${maskValue(fullName)} | Mobile: ${maskValue(tenDigitPhone)} | Email: ${maskValue(email)} | IP: ${maskValue(clientIp)}`
     );
 
     return NextResponse.json(

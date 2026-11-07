@@ -1,29 +1,24 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import {
   Building,
   Building2,
   MapPin,
   Check,
   ArrowRight,
-  Shield,
   ShieldCheck,
   Sparkles,
   PhoneCall,
   FileText,
-  Calendar,
   Layers,
   Wind,
   Lock,
   Car,
   Utensils,
   FolderHeart,
-  SquareStack,
   Compass,
   CheckCircle2,
-  ExternalLink,
   Info,
 } from "lucide-react";
 import { PRIME_RESIDENCES_DATA } from "@/data/primeResidences";

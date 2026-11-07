@@ -59,30 +59,16 @@ export default function Hero() {
 
           {/* Right Column: Luxury Architectural Feature Image */}
           <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none rounded-2xl overflow-hidden border border-[#C5A46D]/40 shadow-2xl group">
-              <div className="relative aspect-[4/5] w-full">
+            <div className="relative mx-auto max-w-md lg:max-w-none rounded-2xl overflow-hidden border border-[#C5A46D]/40 shadow-2xl">
+              <div className="relative aspect-[4/5] w-full overflow-hidden">
                 <Image
                   src="/images/hero-architecture.jpg"
                   alt="Zentara Realty — Luxury residential high-rise architecture in Gurugram at twilight"
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 45vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover animate-ken-burns"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B32] via-[#0B1B32]/30 to-transparent" />
-              </div>
-
-              {/* Architectural Highlight Overlay Badge */}
-              <div className="absolute bottom-5 inset-x-5 p-4 rounded-xl bg-[#0B1B32]/85 backdrop-blur-md border border-white/15">
-                <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="text-[#C5A46D] font-mono uppercase tracking-wider font-semibold">
-                    Primary Market Portfolio
-                  </span>
-                  <span className="text-gray-300">Gurugram, Haryana</span>
-                </div>
-                <div className="text-sm font-bold text-white font-serif-heading">
-                  Curated Pre-Launch &amp; New Launch Condominiums
-                </div>
               </div>
             </div>
           </div>
