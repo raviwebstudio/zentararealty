@@ -4,12 +4,10 @@ export interface ConfigurationItem {
   typology: string;
   totalArea: string;
   superAreaSqFt: number;
-  privateBasementArea: string;
   priceStarting: string;
   priceNumericCr: number;
   bookingAmount: string;
-  paymentPlan: string;
-  description: string;
+  description?: string;
   highlights: string[];
 }
 
@@ -48,7 +46,6 @@ export interface PrimeResidencesData {
   structure: string;
   possession: string;
   bookingAmount: string;
-  paymentPlan: string;
   priceDisclaimer: string;
   overviewSummary: string;
   projectHighlights: string[];
@@ -87,7 +84,6 @@ export const PRIME_RESIDENCES_DATA: PrimeResidencesData = {
   structure: "B+S+4", // Basement + Stilt + 4 Floors
   possession: "End of 2027",
   bookingAmount: "₹10 Lakhs",
-  paymentPlan: "Construction-Linked Plan (25:25:50)",
   priceDisclaimer: "Prices are subject to change; GST and applicable charges are additional.",
   overviewSummary:
     "Welcome to PRIME RESIDENCES, a boutique low-rise gated community of 2 & 3 BHK VRV Homes, where luxury and comfort come together in perfect harmony. Set amidst 5 acres in Sector 65, Gurugram, this exclusive enclave of 308 residences brings you refined living with VRV air-conditioning systems, smart home features, and premium finishes.",
@@ -107,16 +103,11 @@ export const PRIME_RESIDENCES_DATA: PrimeResidencesData = {
       typology: "2 BHK VRV Home",
       totalArea: "1,275 Sq.Ft.",
       superAreaSqFt: 1275,
-      privateBasementArea: "339~441 Sq.Ft.",
       priceStarting: "₹2.42 Cr",
       priceNumericCr: 2.42,
       bookingAmount: "₹10 Lakhs",
-      paymentPlan: "Construction-Linked Plan (25:25:50)",
-      description:
-        "Thoughtfully designed 2 BHK residence paired with an exclusive, fully air-conditioned private basement suitable for a personal work office, private fitness gym, or entertainment lounge.",
       highlights: [
         "1,275 Sq.Ft. efficient layout with zero wasted corridor space",
-        "Private air-conditioned basement (339–441 Sq.Ft.)",
         "Imported marble in living/dining; wooden flooring in bedrooms",
         "Advanced VRV air conditioning with PM 2.5 filtration",
         "Fully modular kitchen with premium chimney and hob",
@@ -131,16 +122,11 @@ export const PRIME_RESIDENCES_DATA: PrimeResidencesData = {
       typology: "3 BHK VRV Home",
       totalArea: "1,740 Sq.Ft.",
       superAreaSqFt: 1740,
-      privateBasementArea: "339~441 Sq.Ft.",
       priceStarting: "₹3.30 Cr",
       priceNumericCr: 3.30,
       bookingAmount: "₹10 Lakhs",
-      paymentPlan: "Construction-Linked Plan (25:25:50)",
-      description:
-        "Generously proportioned 3 BHK boutique home with expansive living zones, dedicated ensuite bedrooms, and a private air-conditioned basement for customized family pursuits.",
       highlights: [
         "1,740 Sq.Ft. expansive low-rise floor layout",
-        "Private air-conditioned basement (339–441 Sq.Ft.)",
         "Imported marble in living/dining; wooden flooring in all bedrooms",
         "Advanced VRV air conditioning with PM 2.5 filtration",
         "Fully modular kitchen with chimney and hob",
@@ -181,12 +167,6 @@ export const PRIME_RESIDENCES_DATA: PrimeResidencesData = {
       spec: "Digital Door Lock & Smart Video Doorbell",
       description: "Keyless access digital main door lock paired with an app-integrated smart video doorbell.",
       iconName: "Lock",
-    },
-    {
-      title: "Private Basement",
-      spec: "339 ~ 441 Sq.Ft. Air-Conditioned Space",
-      description: "Dedicated fully air-conditioned basement space ideal for a home office, private gym, or private lounge.",
-      iconName: "SquareStack",
     },
     {
       title: "Dedicated Parking",

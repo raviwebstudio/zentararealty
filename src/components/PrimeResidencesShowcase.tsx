@@ -121,7 +121,7 @@ export default function PrimeResidencesShowcase() {
           <div className="p-4 rounded-xl bg-[#F7F8FA] border border-[#E5E9F0] text-center hover:border-[#C5A46D]/60 transition-all">
             <div className="text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-1">Possession</div>
             <div className="text-sm sm:text-base font-bold text-emerald-800 font-serif-heading">{data.possession}</div>
-            <div className="text-[10px] text-gray-500 mt-0.5">CLP (25:25:50)</div>
+            <div className="text-[10px] text-gray-500 mt-0.5">Target Timeline</div>
           </div>
         </div>
 
@@ -130,11 +130,10 @@ export default function PrimeResidencesShowcase() {
           <button
             type="button"
             onClick={() => setActiveTab("configurations")}
-            className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${
-              activeTab === "configurations"
-                ? "bg-[#102B50] text-white shadow-md"
-                : "bg-[#F7F8FA] text-[#55647A] hover:bg-[#E5E9F0] hover:text-[#102B50]"
-            }`}
+            className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${activeTab === "configurations"
+              ? "bg-[#102B50] text-white shadow-md"
+              : "bg-[#F7F8FA] text-[#55647A] hover:bg-[#E5E9F0] hover:text-[#102B50]"
+              }`}
           >
             <Building className="w-4 h-4 text-[#C5A46D]" />
             <span>Configurations &amp; Pricing</span>
@@ -143,11 +142,10 @@ export default function PrimeResidencesShowcase() {
           <button
             type="button"
             onClick={() => setActiveTab("club-prime")}
-            className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${
-              activeTab === "club-prime"
-                ? "bg-[#102B50] text-white shadow-md"
-                : "bg-[#F7F8FA] text-[#55647A] hover:bg-[#E5E9F0] hover:text-[#102B50]"
-            }`}
+            className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${activeTab === "club-prime"
+              ? "bg-[#102B50] text-white shadow-md"
+              : "bg-[#F7F8FA] text-[#55647A] hover:bg-[#E5E9F0] hover:text-[#102B50]"
+              }`}
           >
             <Sparkles className="w-4 h-4 text-[#C5A46D]" />
             <span>Club Prime (40,000 Sq.Ft.)</span>
@@ -156,11 +154,10 @@ export default function PrimeResidencesShowcase() {
           <button
             type="button"
             onClick={() => setActiveTab("specifications")}
-            className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${
-              activeTab === "specifications"
-                ? "bg-[#102B50] text-white shadow-md"
-                : "bg-[#F7F8FA] text-[#55647A] hover:bg-[#E5E9F0] hover:text-[#102B50]"
-            }`}
+            className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${activeTab === "specifications"
+              ? "bg-[#102B50] text-white shadow-md"
+              : "bg-[#F7F8FA] text-[#55647A] hover:bg-[#E5E9F0] hover:text-[#102B50]"
+              }`}
           >
             <Layers className="w-4 h-4 text-[#C5A46D]" />
             <span>Luxury Specifications</span>
@@ -169,11 +166,10 @@ export default function PrimeResidencesShowcase() {
           <button
             type="button"
             onClick={() => setActiveTab("location")}
-            className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${
-              activeTab === "location"
-                ? "bg-[#102B50] text-white shadow-md"
-                : "bg-[#F7F8FA] text-[#55647A] hover:bg-[#E5E9F0] hover:text-[#102B50]"
-            }`}
+            className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${activeTab === "location"
+              ? "bg-[#102B50] text-white shadow-md"
+              : "bg-[#F7F8FA] text-[#55647A] hover:bg-[#E5E9F0] hover:text-[#102B50]"
+              }`}
           >
             <MapPin className="w-4 h-4 text-[#C5A46D]" />
             <span>Sector 65 Location Advantages</span>
@@ -201,12 +197,9 @@ export default function PrimeResidencesShowcase() {
                       </span>
                     </div>
 
-                    <h3 className="text-2xl sm:text-3xl font-bold text-[#102B50] font-serif-heading mb-2">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-[#102B50] font-serif-heading mb-4">
                       {plan.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-[#55647A] leading-relaxed mb-6 font-light">
-                      {plan.description}
-                    </p>
 
                     {/* Price & Area Highlight Box */}
                     <div className="p-5 rounded-xl bg-white border border-[#E5E9F0] shadow-sm mb-6">
@@ -225,20 +218,9 @@ export default function PrimeResidencesShowcase() {
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-4 pt-3 text-xs">
-                        <div>
-                          <span className="text-gray-500">Private Basement:</span>{" "}
-                          <span className="font-semibold text-[#102B50]">{plan.privateBasementArea}</span>
-                        </div>
-                        <div>
-                          <span className="text-gray-500">Booking Amount:</span>{" "}
-                          <span className="font-semibold text-emerald-800">{plan.bookingAmount}</span>
-                        </div>
-                      </div>
-
-                      <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
-                        <span className="text-gray-500">Payment Plan:</span>
-                        <span className="font-semibold text-[#102B50]">{plan.paymentPlan}</span>
+                      <div className="pt-3 text-xs flex items-center justify-between">
+                        <span className="text-gray-500">Booking Amount:</span>{" "}
+                        <span className="font-semibold text-emerald-800">{plan.bookingAmount}</span>
                       </div>
                     </div>
 
@@ -287,7 +269,7 @@ export default function PrimeResidencesShowcase() {
               <Info className="w-4 h-4 text-[#C5A46D] shrink-0 mt-0.5" />
               <p className="leading-relaxed">
                 <span className="font-semibold text-[#102B50]">Pricing Clarity:</span> {data.priceDisclaimer}{" "}
-                Booking amount is ₹10 Lakhs under the Construction-Linked Plan (25:25:50). Possession is scheduled for End of 2027.
+                Booking amount is ₹10 Lakhs. Possession is scheduled for End of 2027.
               </p>
             </div>
           </div>
@@ -377,7 +359,6 @@ export default function PrimeResidencesShowcase() {
                     {spec.title === "Wardrobes" && <FolderHeart className="w-5 h-5" />}
                     {spec.title === "Climate Control" && <Wind className="w-5 h-5" />}
                     {spec.title === "Smart & Secure" && <Lock className="w-5 h-5" />}
-                    {spec.title === "Private Basement" && <SquareStack className="w-5 h-5" />}
                     {spec.title === "Dedicated Parking" && <Car className="w-5 h-5" />}
                     {spec.title === "Power & Security" && <ShieldCheck className="w-5 h-5" />}
                   </div>
@@ -393,28 +374,6 @@ export default function PrimeResidencesShowcase() {
                   </p>
                 </div>
               ))}
-            </div>
-
-            {/* Private Basement Spotlight */}
-            <div className="p-6 rounded-xl bg-[#102B50] text-white flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="space-y-1 text-center md:text-left">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#C5A46D]">
-                  Signature Feature
-                </span>
-                <h4 className="text-xl font-bold font-serif-heading">
-                  Private Air-Conditioned Basement (339 ~ 441 Sq.Ft.)
-                </h4>
-                <p className="text-xs text-gray-300 max-w-xl">
-                  Each unit includes a dedicated private basement, fully air-conditioned — perfect as an executive work-from-home office, private fitness studio, or entertainment lounge.
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => handleEnquireClick("Private Basement Details")}
-                className="shrink-0 px-6 py-3 rounded-md text-xs font-bold uppercase tracking-wider text-[#0B1B32] bg-[#C5A46D] hover:bg-[#D4BA88] transition-all"
-              >
-                Request Basement Layout
-              </button>
             </div>
           </div>
         )}

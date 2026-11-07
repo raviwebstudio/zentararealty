@@ -439,11 +439,10 @@ export default function ContactSection() {
                       }}
                       onBlur={() => handleFieldBlur("fullName", fullName)}
                       placeholder="e.g., Rajesh Sharma"
-                      className={`w-full h-11 px-4 rounded-md text-sm text-[#202938] transition-all disabled:opacity-60 disabled:cursor-not-allowed ${
-                        fieldErrors.fullName && touched.fullName
-                          ? "bg-rose-50/20 border border-rose-400 focus:border-rose-500 focus:ring-1 focus:ring-rose-400"
-                          : "bg-[#F7F8FA] border border-[#E5E9F0] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D]"
-                      }`}
+                      className={`w-full h-11 px-4 rounded-md text-sm text-[#202938] transition-all disabled:opacity-60 disabled:cursor-not-allowed ${fieldErrors.fullName && touched.fullName
+                        ? "bg-rose-50/20 border border-rose-400 focus:border-rose-500 focus:ring-1 focus:ring-rose-400"
+                        : "bg-[#F7F8FA] border border-[#E5E9F0] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D]"
+                        }`}
                     />
                     {fieldErrors.fullName && touched.fullName && (
                       <p className="mt-1.5 text-xs text-rose-600 font-medium flex items-center gap-1">
@@ -474,11 +473,10 @@ export default function ContactSection() {
                       }}
                       onBlur={() => handleFieldBlur("mobile", mobile)}
                       placeholder="+91 98765 43210"
-                      className={`w-full h-11 px-4 rounded-md text-sm text-[#202938] transition-all disabled:opacity-60 disabled:cursor-not-allowed ${
-                        fieldErrors.mobile && touched.mobile
-                          ? "bg-rose-50/20 border border-rose-400 focus:border-rose-500 focus:ring-1 focus:ring-rose-400"
-                          : "bg-[#F7F8FA] border border-[#E5E9F0] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D]"
-                      }`}
+                      className={`w-full h-11 px-4 rounded-md text-sm text-[#202938] transition-all disabled:opacity-60 disabled:cursor-not-allowed ${fieldErrors.mobile && touched.mobile
+                        ? "bg-rose-50/20 border border-rose-400 focus:border-rose-500 focus:ring-1 focus:ring-rose-400"
+                        : "bg-[#F7F8FA] border border-[#E5E9F0] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D]"
+                        }`}
                     />
                     {fieldErrors.mobile && touched.mobile && (
                       <p className="mt-1.5 text-xs text-rose-600 font-medium flex items-center gap-1">
@@ -509,11 +507,10 @@ export default function ContactSection() {
                       }}
                       onBlur={() => handleFieldBlur("email", email)}
                       placeholder="rajesh@example.com"
-                      className={`w-full h-11 px-4 rounded-md text-sm text-[#202938] transition-all disabled:opacity-60 disabled:cursor-not-allowed ${
-                        fieldErrors.email && touched.email
-                          ? "bg-rose-50/20 border border-rose-400 focus:border-rose-500 focus:ring-1 focus:ring-rose-400"
-                          : "bg-[#F7F8FA] border border-[#E5E9F0] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D]"
-                      }`}
+                      className={`w-full h-11 px-4 rounded-md text-sm text-[#202938] transition-all disabled:opacity-60 disabled:cursor-not-allowed ${fieldErrors.email && touched.email
+                        ? "bg-rose-50/20 border border-rose-400 focus:border-rose-500 focus:ring-1 focus:ring-rose-400"
+                        : "bg-[#F7F8FA] border border-[#E5E9F0] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D]"
+                        }`}
                     />
                     {fieldErrors.email && touched.email && (
                       <p className="mt-1.5 text-xs text-rose-600 font-medium flex items-center gap-1">
@@ -570,11 +567,10 @@ export default function ContactSection() {
                     }}
                     onBlur={() => handleFieldBlur("message", message)}
                     placeholder="Preferred sector corridors (e.g. Golf Course Ext., Dwarka Exp., SPR), bedroom typology (3BHK/4BHK), or budget expectations..."
-                    className={`w-full px-4 py-3 rounded-md text-sm text-[#202938] transition-all disabled:opacity-60 disabled:cursor-not-allowed ${
-                      fieldErrors.message && touched.message
-                        ? "bg-rose-50/20 border border-rose-400 focus:border-rose-500 focus:ring-1 focus:ring-rose-400"
-                        : "bg-[#F7F8FA] border border-[#E5E9F0] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D]"
-                    }`}
+                    className={`w-full px-4 py-3 rounded-md text-sm text-[#202938] transition-all disabled:opacity-60 disabled:cursor-not-allowed ${fieldErrors.message && touched.message
+                      ? "bg-rose-50/20 border border-rose-400 focus:border-rose-500 focus:ring-1 focus:ring-rose-400"
+                      : "bg-[#F7F8FA] border border-[#E5E9F0] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D]"
+                      }`}
                   />
                   {fieldErrors.message && touched.message && (
                     <p className="mt-1.5 text-xs text-rose-600 font-medium flex items-center gap-1">
@@ -587,11 +583,10 @@ export default function ContactSection() {
                 {/* COMBINED CONSENT CHECKBOX (SINGLE UNCHECKED CHECKBOX) */}
                 <div className="pt-4 border-t border-[#E5E9F0] space-y-3">
                   <div
-                    className={`flex items-start gap-3 p-4 rounded-lg transition-colors ${
-                      fieldErrors.combinedConsent && touched.combinedConsent
-                        ? "bg-rose-50/30 border border-rose-400"
-                        : "bg-[#F7F8FA] border border-[#E5E9F0] hover:border-[#C5A46D]/50"
-                    }`}
+                    className={`flex items-start gap-3 p-4 rounded-lg transition-colors ${fieldErrors.combinedConsent && touched.combinedConsent
+                      ? "bg-rose-50/30 border border-rose-400"
+                      : "bg-[#F7F8FA] border border-[#E5E9F0] hover:border-[#C5A46D]/50"
+                      }`}
                   >
                     <input
                       id="combinedConsent"

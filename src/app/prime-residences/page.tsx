@@ -116,7 +116,6 @@ export default function PrimeResidencesPage() {
         "amenityFeature": [
           { "@type": "LocationFeatureSpecification", "name": "40,000 Sq.Ft. Clubhouse (Club Prime)", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "VRV Air Conditioning with PM 2.5 Filters", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Private Air-Conditioned Basement", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Swimming Pool & Deck", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "25-Seater Luxury Mini Theatre", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "4-Tier Security System", "value": true },
@@ -197,7 +196,7 @@ export default function PrimeResidencesPage() {
                   <div className="p-3.5 rounded-lg bg-[#102B50]/60 border border-white/10">
                     <div className="text-gray-400 uppercase text-[10px] font-bold">Possession</div>
                     <div className="text-sm font-bold text-[#C5A46D] font-serif-heading mt-0.5">{data.possession}</div>
-                    <div className="text-[10px] text-gray-400">CLP (25:25:50)</div>
+                    <div className="text-[10px] text-gray-400">Target Timeline</div>
                   </div>
                 </div>
 
@@ -256,10 +255,6 @@ export default function PrimeResidencesPage() {
                   <div className="flex justify-between py-1.5 border-b border-white/5">
                     <span className="text-gray-400">Booking Amount:</span>
                     <span className="font-semibold text-emerald-400">{data.bookingAmount}</span>
-                  </div>
-                  <div className="flex justify-between py-1.5 border-b border-white/5">
-                    <span className="text-gray-400">Payment Plan:</span>
-                    <span className="font-semibold text-white">{data.paymentPlan}</span>
                   </div>
                   <div className="flex justify-between py-1.5 border-b border-white/5">
                     <span className="text-gray-400">Club Prime:</span>
@@ -353,13 +348,9 @@ export default function PrimeResidencesPage() {
                       </span>
                     </div>
 
-                    <h3 className="text-2xl sm:text-3xl font-bold text-[#102B50] font-serif-heading mb-2">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-[#102B50] font-serif-heading mb-4">
                       {config.title}
                     </h3>
-
-                    <p className="text-xs sm:text-sm text-[#55647A] leading-relaxed mb-6 font-light">
-                      {config.description}
-                    </p>
 
                     {/* Commercial Breakdown */}
                     <div className="p-5 rounded-xl bg-[#F7F8FA] border border-[#E5E9F0] space-y-3 mb-6">
@@ -368,20 +359,12 @@ export default function PrimeResidencesPage() {
                         <span className="text-lg font-bold text-[#102B50] font-serif-heading">{config.totalArea}</span>
                       </div>
                       <div className="flex items-center justify-between pb-3 border-b border-gray-200">
-                        <span className="text-xs text-gray-500">Private Basement:</span>
-                        <span className="text-sm font-semibold text-[#102B50]">{config.privateBasementArea} (Air-Conditioned)</span>
-                      </div>
-                      <div className="flex items-center justify-between pb-3 border-b border-gray-200">
                         <span className="text-xs text-gray-500">Indicative Price*:</span>
                         <span className="text-xl font-bold text-[#C5A46D] font-serif-heading">{config.priceStarting}</span>
                       </div>
-                      <div className="flex items-center justify-between pb-3 border-b border-gray-200">
+                      <div className="flex items-center justify-between">
                         <span className="text-xs text-gray-500">Booking Amount:</span>
                         <span className="text-sm font-semibold text-emerald-800">{config.bookingAmount}</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs text-gray-500">Payment Plan:</span>
-                        <span className="text-xs font-semibold text-[#102B50]">{config.paymentPlan}</span>
                       </div>
                     </div>
 
@@ -420,7 +403,7 @@ export default function PrimeResidencesPage() {
 
             <div className="p-4 rounded-xl bg-white border border-[#E5E9F0] text-center max-w-3xl mx-auto text-xs text-[#55647A]">
               <p className="leading-relaxed">
-                <span className="font-semibold text-[#102B50]">Pricing Note:</span> {data.priceDisclaimer} Booking amount is ₹10 Lakhs. Payment schedule follows a Construction-Linked Plan (25:25:50).
+                <span className="font-semibold text-[#102B50]">Pricing Note:</span> {data.priceDisclaimer} Booking amount is ₹10 Lakhs. Possession is scheduled for End of 2027.
               </p>
             </div>
           </div>
