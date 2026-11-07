@@ -13,15 +13,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       images: [
         `${baseUrl}/images/hero-architecture.jpg`,
         `${baseUrl}/images/about-lifestyle.jpg`,
-        `${baseUrl}/images/prelaunch-architecture.jpg`,
-        `${baseUrl}/images/dwarka-expressway.jpg`,
-        `${baseUrl}/images/spr-residences.jpg`,
-        `${baseUrl}/images/new-gurgaon.jpg`,
-        `${baseUrl}/images/newlaunch-architecture.jpg`,
         `${baseUrl}/images/why-choose-consultation.jpg`,
         `${baseUrl}/og-image.png`,
         `${baseUrl}/logo.png`,
       ],
+    },
+    {
+      url: `${baseUrl}/prime-residences`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/privacy-policy`,

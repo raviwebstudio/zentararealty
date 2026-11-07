@@ -250,6 +250,28 @@ export default function StructuredData() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ApartmentComplex",
+            "@id": `${baseUrl}/#prime-residences`,
+            "name": "Prime Residences",
+            "description":
+              "Boutique low-rise gated community of 2 & 3 BHK VRV Homes by PRIME Developments in Sector 65, Gurugram. Featuring private air-conditioned basement and 40,000 sq.ft. Club Prime.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Sector 65",
+              "addressLocality": "Gurugram",
+              "addressRegion": "Haryana",
+              "addressCountry": "IN",
+            },
+            "numberOfAccommodationUnits": 308,
+            "url": `${baseUrl}/prime-residences`,
+          }),
+        }}
+      />
     </>
   );
 }

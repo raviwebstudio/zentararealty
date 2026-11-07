@@ -35,7 +35,7 @@ export default function ContactSection() {
   const [fullName, setFullName] = useState("");
   const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
-  const [interestedIn, setInterestedIn] = useState("Pre-Launch Residential Projects");
+  const [interestedIn, setInterestedIn] = useState("Prime Residences — 2 BHK + Basement (₹2.42 Cr*)");
   const [message, setMessage] = useState("");
 
   // Combined Consent State (Unchecked by default)
@@ -539,10 +539,12 @@ export default function ContactSection() {
                       onChange={(e) => setInterestedIn(e.target.value)}
                       className="w-full h-11 px-4 rounded-md bg-[#F7F8FA] border border-[#E5E9F0] text-sm text-[#202938] focus:bg-white focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D] transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      <option value="Pre-Launch Residential Projects">Pre-Launch Residential Projects</option>
-                      <option value="Newly Launched Residential Projects">Newly Launched Residential Projects</option>
-                      <option value="Upcoming Projects Advisory">Upcoming Residential Projects Advisory</option>
-                      <option value="General Enquiry">General Consultation Enquiry</option>
+                      <option value="Prime Residences — 2 BHK + Basement (₹2.42 Cr*)">Prime Residences — 2 BHK + Private Basement (₹2.42 Cr*)</option>
+                      <option value="Prime Residences — 3 BHK + Basement (₹3.30 Cr*)">Prime Residences — 3 BHK + Private Basement (₹3.30 Cr*)</option>
+                      <option value="Prime Residences — Request Complete Project Details">Prime Residences — Request Complete Project Details</option>
+                      <option value="Schedule a Consultation for Prime Residences">Schedule a Consultation for Prime Residences</option>
+                      <option value="Pre-Launch & New Launch Advisory">Pre-Launch &amp; New Launch Advisory (Gurugram)</option>
+                      <option value="General Consultation Enquiry">General Consultation Enquiry</option>
                     </select>
                   </div>
                 </div>

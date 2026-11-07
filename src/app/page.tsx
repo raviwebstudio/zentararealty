@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import AboutSection from "@/components/AboutSection";
-import PreLaunchSection from "@/components/PreLaunchSection";
-import NewLaunchesSection from "@/components/NewLaunchesSection";
+import PrimeResidencesShowcase from "@/components/PrimeResidencesShowcase";
 import WhyChooseSection from "@/components/WhyChooseSection";
 import FaqSection from "@/components/FaqSection";
 import ContactSection from "@/components/ContactSection";
@@ -12,21 +11,22 @@ import CookieConsent from "@/components/CookieConsent";
 import StructuredData from "@/components/StructuredData";
 
 export const metadata: Metadata = {
-  title: "Zentara Realty | New & Upcoming Residential Projects in Gurgaon",
+  title: "Zentara Realty | Prime Residences Sector 65 & Primary Residential Developments",
   description:
-    "Explore pre-launch and newly launched residential projects in Gurgaon with Zentara Realty. Discover new developments and enquire about residential opportunities.",
+    "Explore Prime Residences in Sector 65, Gurugram by PRIME Developments — 2 & 3 BHK VRV low-rise homes with private basement and 40,000 sq.ft. Club Prime.",
   keywords: [
+    "Prime Residences Sector 65 Gurgaon",
+    "Prime Residences Gurugram",
+    "PRIME Developments Sector 65",
+    "2 BHK VRV Homes Gurgaon",
+    "3 BHK with Private Basement Gurgaon",
     "New Residential Projects in Gurgaon",
     "Pre Launch Projects in Gurgaon",
     "New Launch Residential Projects in Gurgaon",
     "Upcoming Residential Projects in Gurgaon",
     "Residential Property in Gurgaon",
-    "New Residential Developments in Gurugram",
-    "Luxury Condominiums Gurgaon",
+    "Low Rise Gated Community Sector 65",
     "Golf Course Extension Road Projects",
-    "Dwarka Expressway Residential Projects",
-    "Southern Peripheral Road Residences",
-    "New Gurgaon Residential Projects",
   ],
   authors: [{ name: "Zentara Realty", url: "https://www.zentararealty.property" }],
   creator: "Zentara Realty",
@@ -110,8 +110,7 @@ export default function HomePage() {
       <main id="main-content" className="flex-1">
         <Hero />
         <AboutSection />
-        <PreLaunchSection />
-        <NewLaunchesSection />
+        <PrimeResidencesShowcase />
         <WhyChooseSection />
         <FaqSection />
         <ContactSection />

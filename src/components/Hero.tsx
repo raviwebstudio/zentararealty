@@ -35,10 +35,10 @@ export default function Hero() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-5 mb-8">
               <a
-                href="#pre-launch"
+                href="#prime-residences"
                 className="w-full sm:w-auto px-8 py-4 rounded-md text-sm font-semibold uppercase tracking-wider text-[#0B1B32] bg-[#C5A46D] hover:bg-[#D4BA88] transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group focus:ring-2 focus:ring-white"
               >
-                Explore Residential Projects
+                Explore Prime Residences
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>
 
@@ -46,7 +46,7 @@ export default function Hero() {
                 href="#contact"
                 className="w-full sm:w-auto px-8 py-4 rounded-md text-sm font-semibold uppercase tracking-wider text-white bg-transparent hover:bg-white/10 border border-white/25 transition-all duration-200 flex items-center justify-center gap-2 focus:ring-2 focus:ring-[#C5A46D]"
               >
-                Contact Us
+                Schedule Consultation
               </a>
             </div>
 

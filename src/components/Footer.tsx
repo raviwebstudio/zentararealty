@@ -57,34 +57,39 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-xs text-gray-300">
               <li>
-                <a href="#about" className="hover:text-[#C5A46D] transition-colors">
+                <Link href="/#about" className="hover:text-[#C5A46D] transition-colors">
                   About Zentara Realty
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#pre-launch" className="hover:text-[#C5A46D] transition-colors">
-                  Pre-Launch Residential Projects
-                </a>
+                <Link href="/prime-residences" className="hover:text-[#C5A46D] transition-colors">
+                  Prime Residences (Sector 65)
+                </Link>
               </li>
               <li>
-                <a href="#new-launches" className="hover:text-[#C5A46D] transition-colors">
-                  Newly Launched Developments
-                </a>
+                <Link href="/#configurations" className="hover:text-[#C5A46D] transition-colors">
+                  Configurations &amp; Pricing
+                </Link>
               </li>
               <li>
-                <a href="#why-choose-us" className="hover:text-[#C5A46D] transition-colors">
+                <Link href="/#club-prime" className="hover:text-[#C5A46D] transition-colors">
+                  Club Prime (40,000 Sq.Ft.)
+                </Link>
+              </li>
+              <li>
+                <Link href="/#why-choose-us" className="hover:text-[#C5A46D] transition-colors">
                   Why Choose Zentara
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#faq" className="hover:text-[#C5A46D] transition-colors">
+                <Link href="/#faq" className="hover:text-[#C5A46D] transition-colors">
                   Frequently Asked Questions
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#contact" className="hover:text-[#C5A46D] transition-colors">
+                <Link href="/#contact" className="hover:text-[#C5A46D] transition-colors">
                   Contact &amp; Enquiry
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

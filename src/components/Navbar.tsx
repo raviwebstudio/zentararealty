@@ -18,11 +18,11 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Pre-Launch", href: "#pre-launch" },
-    { name: "New Launches", href: "#new-launches" },
-    { name: "Why Zentara", href: "#why-choose-us" },
-    { name: "Contact", href: "#contact" },
+    { name: "About", href: "/#about" },
+    { name: "Prime Residences", href: "/#prime-residences" },
+    { name: "Club Prime", href: "/#club-prime" },
+    { name: "Why Zentara", href: "/#why-choose-us" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   return (
