@@ -57,39 +57,39 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-xs text-gray-300">
               <li>
-                <Link href="/#about" className="hover:text-[#C5A46D] transition-colors">
+                <a href="#about" className="hover:text-[#C5A46D] transition-colors">
                   About Zentara Realty
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/prime-residences" className="hover:text-[#C5A46D] transition-colors">
+                <a href="#prime-residences" className="hover:text-[#C5A46D] transition-colors">
                   Prime Residences (Sector 65)
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/#configurations" className="hover:text-[#C5A46D] transition-colors">
+                <a href="#configurations" className="hover:text-[#C5A46D] transition-colors">
                   Configurations &amp; Pricing
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/#club-prime" className="hover:text-[#C5A46D] transition-colors">
+                <a href="#club-prime" className="hover:text-[#C5A46D] transition-colors">
                   Club Prime (40,000 Sq.Ft.)
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/#why-choose-us" className="hover:text-[#C5A46D] transition-colors">
+                <a href="#why-choose-us" className="hover:text-[#C5A46D] transition-colors">
                   Why Choose Zentara
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/#faq" className="hover:text-[#C5A46D] transition-colors">
+                <a href="#faq" className="hover:text-[#C5A46D] transition-colors">
                   Frequently Asked Questions
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/#contact" className="hover:text-[#C5A46D] transition-colors">
+                <a href="#contact" className="hover:text-[#C5A46D] transition-colors">
                   Contact &amp; Enquiry
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -109,12 +109,13 @@ export default function Footer() {
               <div className="flex items-center gap-2.5">
                 <MessageSquare className="w-4 h-4 text-[#25D366] shrink-0" />
                 <a
-                  href="https://wa.me/917303437659?text=Hello%20Zentara%20Realty,%20I%20would%20like%20to%20enquire%20about%20new%20residential%20projects%20in%20Gurgaon."
+                  href="https://wa.me/918796418138?text=Hello%20Zentara%20Realty,%20I%20would%20like%20to%20enquire%20about%20new%20residential%20projects%20in%20Gurgaon."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors text-emerald-400"
+                  aria-label="Chat with Zentara Realty on WhatsApp"
+                  className="hover:text-[#25D366] transition-colors text-emerald-400 font-medium"
                 >
-                  WhatsApp: +91 7303437659
+                  WhatsApp
                 </a>
               </div>
               <div className="flex items-center gap-2.5">

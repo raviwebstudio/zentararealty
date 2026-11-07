@@ -275,9 +275,10 @@ export default function ContactSection() {
 
                 {/* WhatsApp Chat */}
                 <a
-                  href="https://wa.me/917303437659?text=Hello%20Zentara%20Realty,%20I%20would%20like%20to%20enquire%20about%20new%20residential%20projects%20in%20Gurgaon."
+                  href="https://wa.me/918796418138?text=Hello%20Zentara%20Realty,%20I%20would%20like%20to%20enquire%20about%20new%20residential%20projects%20in%20Gurgaon."
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Chat on WhatsApp"
                   className="flex items-start gap-4 p-4 rounded-lg bg-[#F7F8FA] hover:bg-emerald-50 border border-[#E5E9F0] hover:border-emerald-300 transition-colors group"
                 >
                   <div className="p-2.5 rounded-md bg-[#25D366] text-white shrink-0">
@@ -288,7 +289,7 @@ export default function ContactSection() {
                       Official WhatsApp
                     </div>
                     <div className="text-sm font-bold text-[#102B50] group-hover:text-emerald-700 transition-colors">
-                      +91 7303437659
+                      Chat on WhatsApp
                     </div>
                   </div>
                 </a>

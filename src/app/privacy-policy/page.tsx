@@ -206,7 +206,7 @@ export default function PrivacyPolicyPage() {
               <div><strong>Designation:</strong> Grievance Redressal Officer, Zentara Realty</div>
               <div><strong>Operational Location:</strong> Gurugram, Haryana, India</div>
               <div><strong>Official Email:</strong> zentararealty@gmail.com</div>
-              <div><strong>Telephone / WhatsApp:</strong> +91 7303437659</div>
+              <div><strong>Telephone:</strong> +91 7303437659</div>
               <div><strong>Website:</strong> https://www.zentararealty.property</div>
             </div>
           </section>

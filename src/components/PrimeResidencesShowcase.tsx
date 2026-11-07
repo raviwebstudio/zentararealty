@@ -478,13 +478,14 @@ export default function PrimeResidencesShowcase() {
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
 
-            <Link
-              href="/prime-residences"
+            <button
+              type="button"
+              onClick={() => handleEnquireClick("Request Project Details")}
               className="w-full sm:w-auto px-6 py-3.5 rounded-md text-xs font-bold uppercase tracking-wider text-white bg-transparent hover:bg-white/10 border border-white/30 transition-all flex items-center justify-center gap-1.5"
             >
-              <span>View Full Project Dossier</span>
-              <ExternalLink className="w-3.5 h-3.5 text-[#C5A46D]" />
-            </Link>
+              <FileText className="w-3.5 h-3.5 text-[#C5A46D]" />
+              <span>Request Project Details</span>
+            </button>
           </div>
         </div>
 

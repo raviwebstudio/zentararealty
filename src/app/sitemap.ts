@@ -19,12 +19,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ],
     },
     {
-      url: `${baseUrl}/prime-residences`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
       url: `${baseUrl}/privacy-policy`,
       lastModified,
       changeFrequency: "monthly",

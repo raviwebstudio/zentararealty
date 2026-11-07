@@ -18,11 +18,11 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "About", href: "/#about" },
-    { name: "Prime Residences", href: "/#prime-residences" },
-    { name: "Club Prime", href: "/#club-prime" },
-    { name: "Why Zentara", href: "/#why-choose-us" },
-    { name: "Contact", href: "/#contact" },
+    { name: "About", href: "#about" },
+    { name: "Prime Residences", href: "#prime-residences" },
+    { name: "Club Prime", href: "#club-prime" },
+    { name: "Why Zentara", href: "#why-choose-us" },
+    { name: "Contact", href: "#contact" },
   ];
 
   return (
@@ -59,7 +59,7 @@ export default function Navbar() {
               +91 7303437659
             </a>
             <a
-              href="https://wa.me/917303437659?text=Hello%20Zentara%20Realty,%20I%20would%20like%20to%20enquire%20about%20new%20residential%20projects%20in%20Gurgaon."
+              href="https://wa.me/918796418138?text=Hello%20Zentara%20Realty,%20I%20would%20like%20to%20enquire%20about%20new%20residential%20projects%20in%20Gurgaon."
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Chat on WhatsApp"
@@ -152,7 +152,7 @@ export default function Navbar() {
               ))}
               <div className="pt-3 border-t border-white/10 flex flex-col gap-2.5">
                 <a
-                  href="https://wa.me/917303437659?text=Hello%20Zentara%20Realty,%20I%20would%20like%20to%20enquire%20about%20new%20residential%20projects%20in%20Gurgaon."
+                  href="https://wa.me/918796418138?text=Hello%20Zentara%20Realty,%20I%20would%20like%20to%20enquire%20about%20new%20residential%20projects%20in%20Gurgaon."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-2.5 px-4 rounded bg-[#25D366]/20 text-[#25D366] border border-[#25D366]/40 text-xs font-semibold uppercase tracking-wider text-center flex items-center justify-center gap-2"
